@@ -36,37 +36,33 @@
 		A026 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F026 /* PrivacyInfo.xcprivacy */; };
 		A027 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027 /* CameraView.swift */; };
 		A028 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028 /* PhotoPickerView.swift */; };
-		ANEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift */; };
-		ANEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift */; };
-		ANEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift */; };
-		ANEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift */; };
-		ANEW0004 /* KrishiDrishti/Core/Network/APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0004 /* KrishiDrishti/Core/Network/APIClient.swift */; };
-		ANEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift */; };
-		ANEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift */; };
-		ANEW0007 /* KrishiDrishti/Services/AI/VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0007 /* KrishiDrishti/Services/AI/VisionService.swift */; };
-		ANEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift */; };
-		ANEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift */; };
-		ANEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift */; };
-		ANEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift */; };
-		ANEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift */; };
-		ANEW0013 /* KrishiDrishti/Services/Location/MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0013 /* KrishiDrishti/Services/Location/MapService.swift */; };
-		ANEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift */; };
-		ANEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift */; };
-		ANEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift */; };
-		ANEW0017 /* KrishiDrishti/Managers/PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0017 /* KrishiDrishti/Managers/PersistenceController.swift */; };
-		ANEW0018 /* KrishiDrishti/Managers/DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0018 /* KrishiDrishti/Managers/DataManager.swift */; };
-		ANEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift */; };
-		ANEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift */; };
-		ANEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift */; };
-		ANEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift */; };
-		ANEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift */; };
-		ANEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift */; };
+		ANEW0000 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0000 /* DIContainer.swift */; };
+		ANEW0001 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0001 /* KeychainManager.swift */; };
+		ANEW0002 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0002 /* SecurityManager.swift */; };
+		ANEW0003 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0003 /* Endpoint.swift */; };
+		ANEW0004 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0004 /* APIClient.swift */; };
+		ANEW0005 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0005 /* NetworkManager.swift */; };
+		ANEW0006 /* CoreMLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0006 /* CoreMLService.swift */; };
+		ANEW0007 /* VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0007 /* VisionService.swift */; };
+		ANEW0008 /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0008 /* PredictionEngine.swift */; };
+		ANEW0009 /* ARSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0009 /* ARSessionManager.swift */; };
+		ANEW0010 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0010 /* ARViewContainer.swift */; };
+		ANEW0011 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0011 /* NotificationManager.swift */; };
+		ANEW0012 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0012 /* LocationManager.swift */; };
+		ANEW0013 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0013 /* MapService.swift */; };
+		ANEW0014 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0014 /* MotionManager.swift */; };
+		ANEW0015 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0015 /* StoreManager.swift */; };
+		ANEW0016 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0016 /* PurchaseManager.swift */; };
+		ANEW0017 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0017 /* PersistenceController.swift */; };
+		ANEW0018 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0018 /* DataManager.swift */; };
+		ANEW0019 /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0019 /* WeatherRepository.swift */; };
+		ANEW0020 /* CropProblemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0020 /* CropProblemRepository.swift */; };
+		ANEW0021 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0021 /* UserProfileRepository.swift */; };
+		ANEW0022 /* ARMappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0022 /* ARMappingView.swift */; };
+		ANEW0023 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0023 /* SubscriptionView.swift */; };
 		C0FCEF392FCEB80100759A16 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FCEF352FCEB7EC00759A16 /* ARKit.framework */; };
 		C0FCEF3C2FCEB80300759A16 /* RealityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FCEF372FCEB7F800759A16 /* RealityKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C0FCEF352FCEB7EC00759A16 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
@@ -104,31 +100,30 @@
 		FCFGRELEASE /* Config/Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Release.xcconfig; sourceTree = SOURCE_ROOT; };
 		FCFGSECRETS /* Config/Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Secrets.xcconfig; sourceTree = SOURCE_ROOT; };
 		FCFGTEMPLATE /* Config/Secrets.template.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Secrets.template.xcconfig; sourceTree = SOURCE_ROOT; };
-		FNEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/DI/DIContainer.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Security/KeychainManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Security/SecurityManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Network/Endpoint.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0004 /* KrishiDrishti/Core/Network/APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Network/APIClient.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Network/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AI/CoreMLService.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0007 /* KrishiDrishti/Services/AI/VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AI/VisionService.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AI/PredictionEngine.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AR/ARSessionManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AR/ARViewContainer.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Notification/NotificationManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Location/LocationManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0013 /* KrishiDrishti/Services/Location/MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Location/MapService.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Motion/MotionManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Purchase/StoreManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Purchase/PurchaseManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0017 /* KrishiDrishti/Managers/PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Managers/PersistenceController.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0018 /* KrishiDrishti/Managers/DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Managers/DataManager.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Repositories/WeatherRepository.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Repositories/CropProblemRepository.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Repositories/UserProfileRepository.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Views/AR/ARMappingView.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Views/Purchase/SubscriptionView.swift; sourceTree = SOURCE_ROOT; };
-		FNEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Views/Scanner/CropVisualization3DView.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0000 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		FNEW0001 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		FNEW0002 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
+		FNEW0003 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		FNEW0004 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FNEW0005 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		FNEW0006 /* CoreMLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLService.swift; sourceTree = "<group>"; };
+		FNEW0007 /* VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionService.swift; sourceTree = "<group>"; };
+		FNEW0008 /* PredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngine.swift; sourceTree = "<group>"; };
+		FNEW0009 /* ARSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSessionManager.swift; sourceTree = "<group>"; };
+		FNEW0010 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		FNEW0011 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		FNEW0012 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FNEW0013 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
+		FNEW0014 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		FNEW0015 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		FNEW0016 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		FNEW0017 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		FNEW0018 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FNEW0019 /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
+		FNEW0020 /* CropProblemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropProblemRepository.swift; sourceTree = "<group>"; };
+		FNEW0021 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
+		FNEW0022 /* ARMappingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMappingView.swift; sourceTree = "<group>"; };
+		FNEW0023 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
 		FPRODUCT /* KrishiDrishti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrishiDrishti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +140,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		GCORE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				GCORE_DI /* DI */,
+				GCORE_SECURITY /* Security */,
+				GCORE_NETWORK /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		GCORE_DI /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0000 /* DIContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		GCORE_SECURITY /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0001 /* KeychainManager.swift */,
+				FNEW0002 /* SecurityManager.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		GCORE_NETWORK /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0003 /* Endpoint.swift */,
+				FNEW0004 /* APIClient.swift */,
+				FNEW0005 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		GMANAGERS /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0017 /* PersistenceController.swift */,
+				FNEW0018 /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		GREPOSITORIES /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0019 /* WeatherRepository.swift */,
+				FNEW0020 /* CropProblemRepository.swift */,
+				FNEW0021 /* UserProfileRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+
 		C0FCEF342FCEB7EC00759A16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,40 +209,17 @@
 		GAPP /* KrishiDrishti */ = {
 			isa = PBXGroup;
 			children = (
-				FNEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift */,
-				FNEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift */,
-				FNEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift */,
-				FNEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift */,
-				FNEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift */,
-				FNEW0004 /* KrishiDrishti/Core/Network/APIClient.swift */,
-				FNEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift */,
-				FNEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift */,
-				FNEW0007 /* KrishiDrishti/Services/AI/VisionService.swift */,
-				FNEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift */,
-				FNEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift */,
-				FNEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift */,
-				FNEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift */,
-				FNEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift */,
-				FNEW0013 /* KrishiDrishti/Services/Location/MapService.swift */,
-				FNEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift */,
-				FNEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift */,
-				FNEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift */,
-				FNEW0017 /* KrishiDrishti/Managers/PersistenceController.swift */,
-				FNEW0018 /* KrishiDrishti/Managers/DataManager.swift */,
-				FNEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift */,
-				FNEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift */,
-				FNEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift */,
-				FNEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift */,
-				FNEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift */,
 				GCONFIG /* Config */,
 				GAPPDIR /* App */,
-				GMODELS /* Models */,
 				GSERVICES /* Services */,
 				GUTILS /* Utils */,
-				GVIEWMODELS /* ViewModels */,
-				GVIEWS /* Views */,
 				GRESOURCES /* Resources */,
-			);
+				GFEATURES /* Features */,
+			
+				GCORE /* Core */,
+				GMANAGERS /* Managers */,
+				GREPOSITORIES /* Repositories */,
+);
 			path = KrishiDrishti;
 			sourceTree = "<group>";
 		};
@@ -214,15 +243,93 @@
 			path = Config;
 			sourceTree = SOURCE_ROOT;
 		};
-		GMODELS /* Models */ = {
+		GFEATURES /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				F003 /* CropProblem.swift */,
+				GFEATURES_HOME /* Home */,
+				GFEATURES_SCANNER /* Scanner */,
+				GFEATURES_BOT /* Bot */,
+				GFEATURES_PROFILE /* Profile */,
+				GFEATURES_ONBOARDING /* Onboarding */,
+				GFEATURES_PURCHASE /* Purchase */,
+				GFEATURES_AR /* AR */,
+				GFEATURES_COMPONENTS /* Components */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		GFEATURES_AR /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0022 /* ARMappingView.swift */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		GFEATURES_BOT /* Bot */ = {
+			isa = PBXGroup;
+			children = (
+				F020 /* BotView.swift */,
+				F015 /* KrishiBotViewModel.swift */,
+			);
+			path = Bot;
+			sourceTree = "<group>";
+		};
+		GFEATURES_COMPONENTS /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F023 /* SharedComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		GFEATURES_HOME /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F016 /* HomeView.swift */,
+				F017 /* HistoryView.swift */,
 				F004 /* WeatherModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		GFEATURES_ONBOARDING /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F022 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		GFEATURES_PROFILE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F021 /* ProfileView.swift */,
 				F005 /* UserProfile.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		GFEATURES_PURCHASE /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0023 /* SubscriptionView.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		GFEATURES_SCANNER /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				F018 /* ScannerView.swift */,
+				F027 /* CameraView.swift */,
+				F019 /* ResultDetailView.swift */,
+				F028 /* PhotoPickerView.swift */,
+				F014 /* ScannerViewModel.swift */,
+				F003 /* CropProblem.swift */,
 				F006 /* TreatmentStep.swift */,
 			);
-			path = Models;
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 		GPRODUCTS /* Products */ = {
@@ -252,9 +359,15 @@
 			);
 			sourceTree = "<group>";
 		};
-		GSERVICES /* Services */ = {
+				GSERVICES /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				GSERVICES_AI /* AI */,
+				GSERVICES_AR /* AR */,
+				GSERVICES_LOCATION /* Location */,
+				GSERVICES_MOTION /* Motion */,
+				GSERVICES_NOTIFICATION /* Notification */,
+				GSERVICES_PURCHASE /* Purchase */,
 				F007 /* GeminiService.swift */,
 				F008 /* SarvamTTSService.swift */,
 				F009 /* VisionAnalysisService.swift */,
@@ -265,6 +378,59 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		GSERVICES_AI /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0006 /* CoreMLService.swift */,
+				FNEW0007 /* VisionService.swift */,
+				FNEW0008 /* PredictionEngine.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		GSERVICES_AR /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0009 /* ARSessionManager.swift */,
+				FNEW0010 /* ARViewContainer.swift */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		GSERVICES_LOCATION /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0012 /* LocationManager.swift */,
+				FNEW0013 /* MapService.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		GSERVICES_MOTION /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0014 /* MotionManager.swift */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		GSERVICES_NOTIFICATION /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0011 /* NotificationManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		GSERVICES_PURCHASE /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0015 /* StoreManager.swift */,
+				FNEW0016 /* PurchaseManager.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
 		GUTILS /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,80 +438,6 @@
 				F013_TRANS /* OfflineTranslation.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		GVIEWMODELS /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F014 /* ScannerViewModel.swift */,
-				F015 /* KrishiBotViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		GVIEWS /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				GVIEWSHOME /* Home */,
-				GVIEWSSCANNER /* Scanner */,
-				GVIEWSBOT /* Bot */,
-				GVIEWSPROFILE /* Profile */,
-				GVIEWSONBOARDING /* Onboarding */,
-				GVIEWSCOMPONENTS /* Components */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		GVIEWSBOT /* Bot */ = {
-			isa = PBXGroup;
-			children = (
-				F020 /* BotView.swift */,
-			);
-			path = Bot;
-			sourceTree = "<group>";
-		};
-		GVIEWSCOMPONENTS /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				F023 /* SharedComponents.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		GVIEWSHOME /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				F016 /* HomeView.swift */,
-				F017 /* HistoryView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		GVIEWSONBOARDING /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				F022 /* OnboardingView.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		GVIEWSPROFILE /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				F021 /* ProfileView.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		GVIEWSSCANNER /* Scanner */ = {
-			isa = PBXGroup;
-			children = (
-				F027 /* CameraView.swift */,
-				F028 /* PhotoPickerView.swift */,
-				F018 /* ScannerView.swift */,
-				F019 /* ResultDetailView.swift */,
-			);
-			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,55 +511,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ANEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift in Sources */,
-				ANEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift in Sources */,
-				ANEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift in Sources */,
-				ANEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift in Sources */,
-				ANEW0004 /* KrishiDrishti/Core/Network/APIClient.swift in Sources */,
-				ANEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift in Sources */,
-				ANEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift in Sources */,
-				ANEW0007 /* KrishiDrishti/Services/AI/VisionService.swift in Sources */,
-				ANEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift in Sources */,
-				ANEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift in Sources */,
-				ANEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift in Sources */,
-				ANEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift in Sources */,
-				ANEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift in Sources */,
-				ANEW0013 /* KrishiDrishti/Services/Location/MapService.swift in Sources */,
-				ANEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift in Sources */,
-				ANEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift in Sources */,
-				ANEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift in Sources */,
-				ANEW0017 /* KrishiDrishti/Managers/PersistenceController.swift in Sources */,
-				ANEW0018 /* KrishiDrishti/Managers/DataManager.swift in Sources */,
-				ANEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift in Sources */,
-				ANEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift in Sources */,
-				ANEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift in Sources */,
-				ANEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift in Sources */,
-				ANEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift in Sources */,
-				ANEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift in Sources */,
-				ANEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift in Sources */,
-				ANEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift in Sources */,
-				ANEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift in Sources */,
-				ANEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift in Sources */,
-				ANEW0004 /* KrishiDrishti/Core/Network/APIClient.swift in Sources */,
-				ANEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift in Sources */,
-				ANEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift in Sources */,
-				ANEW0007 /* KrishiDrishti/Services/AI/VisionService.swift in Sources */,
-				ANEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift in Sources */,
-				ANEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift in Sources */,
-				ANEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift in Sources */,
-				ANEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift in Sources */,
-				ANEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift in Sources */,
-				ANEW0013 /* KrishiDrishti/Services/Location/MapService.swift in Sources */,
-				ANEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift in Sources */,
-				ANEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift in Sources */,
-				ANEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift in Sources */,
-				ANEW0017 /* KrishiDrishti/Managers/PersistenceController.swift in Sources */,
-				ANEW0018 /* KrishiDrishti/Managers/DataManager.swift in Sources */,
-				ANEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift in Sources */,
-				ANEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift in Sources */,
-				ANEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift in Sources */,
-				ANEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift in Sources */,
-				ANEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift in Sources */,
+				ANEW0000 /* DIContainer.swift in Sources */,
+				ANEW0001 /* KeychainManager.swift in Sources */,
+				ANEW0002 /* SecurityManager.swift in Sources */,
+				ANEW0003 /* Endpoint.swift in Sources */,
+				ANEW0004 /* APIClient.swift in Sources */,
+				ANEW0005 /* NetworkManager.swift in Sources */,
+				ANEW0006 /* CoreMLService.swift in Sources */,
+				ANEW0007 /* VisionService.swift in Sources */,
+				ANEW0008 /* PredictionEngine.swift in Sources */,
+				ANEW0009 /* ARSessionManager.swift in Sources */,
+				ANEW0010 /* ARViewContainer.swift in Sources */,
+				ANEW0011 /* NotificationManager.swift in Sources */,
+				ANEW0012 /* LocationManager.swift in Sources */,
+				ANEW0013 /* MapService.swift in Sources */,
+				ANEW0014 /* MotionManager.swift in Sources */,
+				ANEW0015 /* StoreManager.swift in Sources */,
+				ANEW0016 /* PurchaseManager.swift in Sources */,
+				ANEW0017 /* PersistenceController.swift in Sources */,
+				ANEW0018 /* DataManager.swift in Sources */,
+				ANEW0019 /* WeatherRepository.swift in Sources */,
+				ANEW0020 /* CropProblemRepository.swift in Sources */,
+				ANEW0021 /* UserProfileRepository.swift in Sources */,
+				ANEW0022 /* ARMappingView.swift in Sources */,
+				ANEW0023 /* SubscriptionView.swift in Sources */,
+				ANEW0000 /* DIContainer.swift in Sources */,
+				ANEW0001 /* KeychainManager.swift in Sources */,
+				ANEW0002 /* SecurityManager.swift in Sources */,
+				ANEW0003 /* Endpoint.swift in Sources */,
+				ANEW0004 /* APIClient.swift in Sources */,
+				ANEW0005 /* NetworkManager.swift in Sources */,
+				ANEW0006 /* CoreMLService.swift in Sources */,
+				ANEW0007 /* VisionService.swift in Sources */,
+				ANEW0008 /* PredictionEngine.swift in Sources */,
+				ANEW0009 /* ARSessionManager.swift in Sources */,
+				ANEW0010 /* ARViewContainer.swift in Sources */,
+				ANEW0011 /* NotificationManager.swift in Sources */,
+				ANEW0012 /* LocationManager.swift in Sources */,
+				ANEW0013 /* MapService.swift in Sources */,
+				ANEW0014 /* MotionManager.swift in Sources */,
+				ANEW0015 /* StoreManager.swift in Sources */,
+				ANEW0016 /* PurchaseManager.swift in Sources */,
+				ANEW0017 /* PersistenceController.swift in Sources */,
+				ANEW0018 /* DataManager.swift in Sources */,
+				ANEW0019 /* WeatherRepository.swift in Sources */,
+				ANEW0020 /* CropProblemRepository.swift in Sources */,
+				ANEW0021 /* UserProfileRepository.swift in Sources */,
+				ANEW0022 /* ARMappingView.swift in Sources */,
+				ANEW0023 /* SubscriptionView.swift in Sources */,
 				A001 /* KrishiDrishtiApp.swift in Sources */,
 				A002 /* AppTheme.swift in Sources */,
 				A003 /* CropProblem.swift in Sources */,
