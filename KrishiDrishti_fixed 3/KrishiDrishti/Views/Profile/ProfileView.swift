@@ -1,105 +1,32 @@
 // Views/Profile/ProfileView.swift
-// KrishiDrishti — Farmer profile view + edit sheet
+// KrishiDrishti — Farmer profile view + edit sheet secured with biometric FaceID check
 
 import SwiftUI
+import LocalAuthentication
 
 // MARK: - Profile Sheet
 struct ProfileView: View {
     @ObservedObject var profile: UserProfile
     @Environment(\.dismiss) private var dismiss
     @State private var showEdit = false
+    @State private var isAuthenticated = false
+    @State private var showAuthError = false
+
+    private let securityManager: SecurityManagerProtocol = DIContainer.shared.resolve(type: SecurityManagerProtocol.self)
+
+    init(profile: UserProfile) {
+        self.profile = profile
+    }
 
     var body: some View {
         NavigationStack {
-            List {
-                // Header section
-                Section {
-                    HStack(spacing: 16) {
-                        Text(profile.avatar)
-                            .font(.system(size: 64))
-                            .frame(width: 80, height: 80)
-                            .background(AppTheme.greenSoft, in: Circle())
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(profile.displayName)
-                                .font(.title2)
-                                .fontWeight(.bold)
-                            if !profile.village.isEmpty || !profile.state.isEmpty {
-                                Label(
-                                    [profile.village, profile.state].filter{!$0.isEmpty}.joined(separator: ", "),
-                                    systemImage: "mappin.circle.fill"
-                                )
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                                .labelStyle(.titleAndIcon)
-                            }
-                        }
-                    }
-                    .padding(.vertical, 8)
-                }
-
-                // Farm details section
-                if !profile.farmSize.isEmpty || !profile.crops.isEmpty {
-                    Section("Farm Info") {
-                        if !profile.farmSize.isEmpty {
-                            Label {
-                                HStack {
-                                    Text("Farm Size")
-                                    Spacer()
-                                    Text(profile.farmSize + " acres")
-                                        .foregroundStyle(.secondary)
-                                }
-                            } icon: {
-                                Image(systemName: "square.grid.2x2.fill")
-                                    .foregroundStyle(AppTheme.green)
-                            }
-                        }
-                        if !profile.crops.isEmpty {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Label("My Crops", systemImage: "leaf.fill")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                                    .labelStyle(.titleAndIcon)
-                                FlowTags(items: profile.crops)
-                                    .padding(.top, 2)
-                            }
-                            .padding(.vertical, 4)
-                        }
-                    }
-                }
-
-                // Contact section
-                if !profile.phone.isEmpty {
-                    Section("Contact") {
-                        Label {
-                            HStack {
-                                Text("Phone")
-                                Spacer()
-                                Text(profile.phone)
-                                    .foregroundStyle(.secondary)
-                            }
-                        } icon: {
-                            Image(systemName: "phone.fill")
-                                .foregroundStyle(AppTheme.green)
-                        }
-                    }
-                }
-
-                // Edit button
-                Section {
-                    Button {
-                        showEdit = true
-                    } label: {
-                        HStack {
-                            Spacer()
-                            Label("Edit Profile", systemImage: "pencil")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(AppTheme.green)
-                            Spacer()
-                        }
-                    }
+            Group {
+                if securityManager.isBiometricAvailable() && !isAuthenticated {
+                    lockedStateView
+                } else {
+                    profileListView
                 }
             }
-            .listStyle(.insetGrouped)
             .navigationTitle("My Profile")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
@@ -110,7 +37,167 @@ struct ProfileView: View {
                 }
             }
         }
-        .sheet(isPresented: $showEdit) { ProfileEditView(profile: profile) }
+        .sheet(isPresented: $showEdit) {
+            ProfileEditView(profile: profile)
+        }
+        .onAppear {
+            performBiometricAuth()
+        }
+    }
+
+    private var lockedStateView: some View {
+        VStack(spacing: 24) {
+            Spacer()
+            ZStack {
+                Circle()
+                    .fill(AppTheme.greenSoft)
+                    .frame(width: 100, height: 100)
+                Image(systemName: "faceid")
+                    .font(.system(size: 48))
+                    .foregroundStyle(AppTheme.green)
+            }
+
+            VStack(spacing: 8) {
+                Text("Profile Locked")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text("Authenticate using Face ID or Touch ID to view your farmer profile details.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+            }
+
+            Button {
+                performBiometricAuth()
+            } label: {
+                Text("Unlock with Biometrics")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(width: 240, height: 50)
+                    .background(AppTheme.primaryGradient, in: Capsule())
+            }
+            .buttonStyle(.plain)
+
+            if showAuthError {
+                Text("Authentication failed. Please try again.")
+                    .font(.caption)
+                    .foregroundStyle(AppTheme.red)
+            }
+
+            Spacer()
+        }
+    }
+
+    private var profileListView: some View {
+        List {
+            // Header section
+            Section {
+                HStack(spacing: 16) {
+                    Text(profile.avatar)
+                        .font(.system(size: 64))
+                        .frame(width: 80, height: 80)
+                        .background(AppTheme.greenSoft, in: Circle())
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(profile.displayName)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        if !profile.village.isEmpty || !profile.state.isEmpty {
+                            Label(
+                                [profile.village, profile.state].filter { !$0.isEmpty }.joined(separator: ", "),
+                                systemImage: "mappin.circle.fill"
+                            )
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .labelStyle(.titleAndIcon)
+                        }
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            // Farm details section
+            if !profile.farmSize.isEmpty || !profile.crops.isEmpty {
+                Section("Farm Info") {
+                    if !profile.farmSize.isEmpty {
+                        Label {
+                            HStack {
+                                Text("Farm Size")
+                                Spacer()
+                                Text(profile.farmSize + " acres")
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "square.grid.2x2.fill")
+                                .foregroundStyle(AppTheme.green)
+                        }
+                    }
+                    if !profile.crops.isEmpty {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Label("My Crops", systemImage: "leaf.fill")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                                .labelStyle(.titleAndIcon)
+                            FlowTags(items: profile.crops)
+                                .padding(.top, 2)
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+            }
+
+            // Contact section
+            if !profile.phone.isEmpty {
+                Section("Contact") {
+                    Label {
+                        HStack {
+                            Text("Phone")
+                            Spacer()
+                            Text(profile.phone)
+                                .foregroundStyle(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: "phone.fill")
+                            .foregroundStyle(AppTheme.green)
+                    }
+                }
+            }
+
+            // Edit button
+            Section {
+                Button {
+                    showEdit = true
+                } label: {
+                    HStack {
+                        Spacer()
+                        Label("Edit Profile", systemImage: "pencil")
+                            .fontWeight(.semibold)
+                            .foregroundStyle(AppTheme.green)
+                        Spacer()
+                    }
+                }
+            }
+        }
+        .listStyle(.insetGrouped)
+    }
+
+    private func performBiometricAuth() {
+        guard securityManager.isBiometricAvailable() else {
+            isAuthenticated = true
+            return
+        }
+
+        Task {
+            let success = await securityManager.authenticateUser(reason: "Secure access to farmer details")
+            await MainActor.run {
+                if success {
+                    self.isAuthenticated = true
+                    self.showAuthError = false
+                } else {
+                    self.showAuthError = true
+                }
+            }
+        }
     }
 }
 

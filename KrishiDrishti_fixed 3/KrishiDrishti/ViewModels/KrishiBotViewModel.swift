@@ -1,46 +1,52 @@
 // ViewModels/KrishiBotViewModel.swift
-// KrishiDrishti — KrishiBot AI (Gemini 1.5 Flash free tier + offline expert engine)
+// KrishiDrishti — Upgraded KrishiBot ViewModel integrating Local AI prediction engines and NaturalLanguage sentiment detection
 
 import SwiftUI
 import Vision
+import NaturalLanguage
 
-// MARK: - Message model
+// MARK: - Bot Message Models
 struct BotMsg: Identifiable {
-    let id   = UUID()
+    let id = UUID()
     let role: BotRole
     var text: String
     var image: UIImage?
     var chart: BotChart?
+    var distressAlert = false // Set if negative sentiment is detected in farmer query
 }
+
 enum BotRole { case user, bot }
 
 struct BotChart: Identifiable {
-    let id    = UUID()
+    let id = UUID()
     let title: String
-    let bars:  [BotBar]
-    let unit:  String
+    var bars: [BotBar]
+    let unit: String
 }
+
 struct BotBar: Identifiable {
-    let id    = UUID()
+    let id = UUID()
     let label: String
     let value: Double
     let color: Color
 }
 
-// MARK: - ViewModel
+// MARK: - Bot ViewModel
 @MainActor
 final class KrishiBotVM: ObservableObject {
 
     @Published var messages: [BotMsg] = []
-    @Published var input:    String   = ""
-    @Published var thinking: Bool     = false
+    @Published var input: String = ""
+    @Published var thinking: Bool = false
 
     var currentWeather: WeatherData?
-    var farmerCrops:    [String] = []
-    var farmerName:     String   = ""
+    var farmerCrops: [String] = []
+    var farmerName: String = ""
+
+    private let predictionEngine: PredictionEngineProtocol
     private let offlineKnowledge = LocalKnowledgeStore.load()
 
-    // Gemini system prompt
+    // Gemini configuration prompt
     private var geminiSystem: String {
         """
         You are KrishiBot, a senior agronomist with 25 years experience in Indian field agriculture.
@@ -56,7 +62,9 @@ final class KrishiBotVM: ObservableObject {
         """
     }
 
-    init() {
+    init(predictionEngine: PredictionEngineProtocol = DIContainer.shared.resolve(type: PredictionEngineProtocol.self)) {
+        self.predictionEngine = predictionEngine
+
         messages.append(BotMsg(role: .bot, text: """
         👋 **Hello! I am KrishiBot.**
 
@@ -76,52 +84,69 @@ final class KrishiBotVM: ObservableObject {
         messages.append(BotMsg(role: .user, text: "📷 Photo submitted for analysis:", image: img))
         thinking = true
         Task {
-            let (label, conf) = await VisionAnalysisService.shared.classify(image: img)
-            let reply = photoReply(label: label, conf: conf)
-            self.thinking = false
-            self.messages.append(reply)
-        }
-    }
-
-    private func photoReply(label: String, conf: Double) -> BotMsg {
-        let l = label.lowercased()
-        let pct = min(Int(conf * 100), 99)
-        let w   = currentWeather
-        if l.contains("tomato")                          { return cropCard(.tomato,    pct: pct, w: w) }
-        if l.contains("corn") || l.contains("maize")    { return cropCard(.maize,     pct: pct, w: w) }
-        if l.contains("rice") || l.contains("paddy")    { return cropCard(.rice,      pct: pct, w: w) }
-        if l.contains("potato")                         { return cropCard(.potato,    pct: pct, w: w) }
-        if l.contains("wheat")                          { return cropCard(.wheat,     pct: pct, w: w) }
-        if l.contains("sugarcane")                      { return cropCard(.sugarcane, pct: pct, w: w) }
-        if l.contains("soil") || l.contains("dirt")     { return soilCard(pct: pct) }
-        if l.contains("leaf") || l.contains("plant") || l.contains("green") {
-            return BotMsg(role: .bot, text: "🌿 **Plant/leaf detected** (\(pct)%)\n\nFor precise diagnosis, describe the symptoms you see.")
-        }
-        return BotMsg(role: .bot, text: "🔍 Detected: *\(label)* (\(pct)%)\n\nCrop not clearly identified. Type the crop name and symptom below.")
-    }
-
-    // MARK: - Send text
-    func sendText() {
-        let q = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !q.isEmpty else { return }
-        messages.append(BotMsg(role: .user, text: q))
-        input = ""; thinking = true
-
-        Task {
-            // Try Gemini first (free 1500/day), fall back to offline engine
-            if GeminiService.shared.isConfigured,
-               let ai = await GeminiService.shared.ask(system: geminiSystem, user: q) {
+            do {
+                let diagnosis = try await predictionEngine.predictCropProblem(from: img)
+                let reply = photoReply(diagnosis: diagnosis)
                 self.thinking = false
-                self.messages.append(BotMsg(role: .bot, text: ai))
-            } else {
-                let local = self.expertReply(q)
+                self.messages.append(reply)
+            } catch {
                 self.thinking = false
-                self.messages.append(local)
+                self.messages.append(BotMsg(role: .bot, text: "⚠️ Unable to analyze the photo. Please check image clarity and try again."))
             }
         }
     }
 
-    // MARK: - Offline expert engine
+    private func photoReply(diagnosis: CropProblem) -> BotMsg {
+        let confidencePercent = min(Int(diagnosis.confidence * 100), 99)
+        let weather = currentWeather
+
+        let label = diagnosis.cropName.lowercased()
+        if label.contains("tomato") { return cropCard(.tomato, pct: confidencePercent, w: weather) }
+        if label.contains("maize") || label.contains("corn") { return cropCard(.maize, pct: confidencePercent, w: weather) }
+        if label.contains("rice") || label.contains("paddy") { return cropCard(.rice, pct: confidencePercent, w: weather) }
+        if label.contains("potato") { return cropCard(.potato, pct: confidencePercent, w: weather) }
+        if label.contains("wheat") { return cropCard(.wheat, pct: confidencePercent, w: weather) }
+        if label.contains("sugarcane") { return cropCard(.sugarcane, pct: confidencePercent, w: weather) }
+
+        return BotMsg(role: .bot, text: "🌿 **\(diagnosis.cropName) Detected** (\(confidencePercent)%)\n\n\(diagnosis.disease): \(diagnosis.remedy)")
+    }
+
+    // MARK: - Send text
+    func sendText() {
+        let query = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return }
+
+        // Core NLP: Evaluate query sentiment score to determine farmer distress level
+        let sentiment = predictionEngine.analyzeSentiment(of: query)
+        let isDistressed = sentiment == "negative"
+
+        messages.append(BotMsg(role: .user, text: query, distressAlert: isDistressed))
+        input = ""
+        thinking = true
+
+        Task {
+            var answer = ""
+
+            // Attempt Gemini model analysis, fall back to offline dictionary
+            if GeminiService.shared.isConfigured,
+               let aiAnswer = await GeminiService.shared.ask(system: geminiSystem, user: query) {
+                answer = aiAnswer
+            } else {
+                let localResponse = self.expertReply(query)
+                answer = localResponse.text
+            }
+
+            // Append a supportive prefix if negative sentiment/distress is identified
+            if isDistressed {
+                answer = "🚨 *Distress warning: High concern detected. Take action promptly.*\n\n" + answer
+            }
+
+            self.thinking = false
+            self.messages.append(BotMsg(role: .bot, text: answer, distressAlert: isDistressed))
+        }
+    }
+
+    // MARK: - Offline expert engine fallback
     private func expertReply(_ raw: String) -> BotMsg {
         let q = raw.lowercased()
         let w = currentWeather
@@ -130,7 +155,7 @@ final class KrishiBotVM: ObservableObject {
         if isGreeting(q) {
             return BotMsg(role: .bot, text: "Hello \(name)! 👋 How can I help you today?")
         }
-        if has(q, ["weather","temperature","humidity","rain","forecast"]) {
+        if has(q, ["weather", "temperature", "humidity", "rain", "forecast"]) {
             if let w {
                 return BotMsg(role: .bot, text: """
                 🌤️ **Weather — \(w.locationName)**
@@ -145,7 +170,7 @@ final class KrishiBotVM: ObservableObject {
         if let reference = knowledgeReply(for: q) {
             return reference
         }
-        if has(q, ["early blight","alternaria"]) {
+        if has(q, ["early blight", "alternaria"]) {
             return BotMsg(role: .bot, text: """
             🍅 **Early Blight — *Alternaria solani***
             • Concentric rings on lower leaves, yellow halo around spots
@@ -155,7 +180,7 @@ final class KrishiBotVM: ObservableObject {
             Remove infected leaves. Avoid overhead irrigation.
             """)
         }
-        if has(q, ["late blight","phytophthora"]) {
+        if has(q, ["late blight", "phytophthora"]) {
             return BotMsg(role: .bot, text: """
             🥔 **Late Blight — *Phytophthora infestans***
             • Water-soaked irregular spots, white growth under leaves
@@ -164,7 +189,7 @@ final class KrishiBotVM: ObservableObject {
             \(w.map { $0.humidity > 80 ? "\n🚨 Humidity \($0.humidity)% — HIGH RISK. Spray immediately." : "" } ?? "")
             """)
         }
-        if has(q, ["bacterial blight","blb","xanthomonas"]) {
+        if has(q, ["bacterial blight", "blb", "xanthomonas"]) {
             return BotMsg(role: .bot, text: """
             🌾 **Bacterial Leaf Blight — Rice**
             • Yellow stripes on leaf margins → turn white/grey
@@ -175,7 +200,7 @@ final class KrishiBotVM: ObservableObject {
             ⚠️ No fungicide works — this is bacterial.
             """)
         }
-        if has(q, ["fertilizer","urea","dap","npk","nitrogen"]) {
+        if has(q, ["fertilizer", "urea", "dap", "npk", "nitrogen"]) {
             return BotMsg(role: .bot,
                 text: """
                 🌱 **Fertilizer — Common Benchmarks (kg/hectare)**
@@ -194,7 +219,7 @@ final class KrishiBotVM: ObservableObject {
                     BotBar(label: "Tomato", value: 150, color: .red)
                 ], unit: "kg"))
         }
-        if has(q, ["pest","aphid","thrips","stem borer","armyworm"]) {
+        if has(q, ["pest", "aphid", "thrips", "stem borer", "armyworm"]) {
             return BotMsg(role: .bot, text: """
             🐛 **Pest Management — IPM Guide**
             | Pest | Product | Dose |
@@ -206,7 +231,7 @@ final class KrishiBotVM: ObservableObject {
             Spray 7–9 AM or 4–6 PM. Avoid wind >15 km/h.
             """)
         }
-        if has(q, ["soil","ph","compost","fym","gypsum"]) {
+        if has(q, ["soil", "ph", "compost", "fym", "gypsum"]) {
             return BotMsg(role: .bot,
                 text: """
                 🌱 **Soil Science**
@@ -225,8 +250,8 @@ final class KrishiBotVM: ObservableObject {
 
         // Crop cards fallback
         if has(q, ["tomato"])    { return cropCard(.tomato,    pct: 90, w: w) }
-        if has(q, ["maize","corn"]) { return cropCard(.maize, pct: 90, w: w) }
-        if has(q, ["rice","paddy"]) { return cropCard(.rice,  pct: 90, w: w) }
+        if has(q, ["maize", "corn"]) { return cropCard(.maize, pct: 90, w: w) }
+        if has(q, ["rice", "paddy"]) { return cropCard(.rice,  pct: 90, w: w) }
         if has(q, ["potato"])    { return cropCard(.potato,    pct: 90, w: w) }
         if has(q, ["wheat"])     { return cropCard(.wheat,     pct: 90, w: w) }
         if has(q, ["sugarcane"]) { return cropCard(.sugarcane, pct: 90, w: w) }
@@ -278,16 +303,6 @@ final class KrishiBotVM: ObservableObject {
         }
     }
 
-    private func soilCard(pct: Int) -> BotMsg {
-        BotMsg(role: .bot,
-            text: "🌱 **Soil detected** (\(pct)%)\n• pH <6 → Lime 2–4 t/hectare\n• pH >8 → Gypsum 5–10 t/hectare\n• Zinc Sulphate 25 kg/hectare if Zn deficient",
-            chart: BotChart(title: "Micronutrient Doses (kg/ha)", bars: [
-                BotBar(label: "Zinc Sulphate", value: 25, color: AppTheme.green),
-                BotBar(label: "Borax",         value: 10, color: AppTheme.amber),
-                BotBar(label: "Ferrous Sulph", value: 25, color: AppTheme.greenLight)
-            ], unit: "kg"))
-    }
-
     private func knowledgeReply(for query: String) -> BotMsg? {
         guard let match = offlineKnowledge.bestMatch(for: query) else { return nil }
         return BotMsg(role: .bot, text: """
@@ -300,15 +315,15 @@ final class KrishiBotVM: ObservableObject {
         """)
     }
 
-    // MARK: - Helpers
     private func has(_ text: String, _ kw: [String]) -> Bool { kw.contains { text.contains($0) } }
     private func isGreeting(_ t: String) -> Bool {
-        let g = ["hi","hello","hey","good morning","good evening","namaste"]
+        let g = ["hi", "hello", "hey", "good morning", "good evening", "namaste"]
         let t = t.trimmingCharacters(in: .whitespaces)
-        return g.contains { t == $0 || t.hasPrefix("\($0) ") }
+        return g.contains { t == $0 || t.hasPrefix("\",\" ") }
     }
 }
 
+// MARK: - Programmatic Disease Dictionary Data Loader
 private struct LocalDiseaseReference: Codable {
     let id: String
     let name: String

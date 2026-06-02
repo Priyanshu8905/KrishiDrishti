@@ -119,10 +119,11 @@ struct BotView: View {
     }
 }
 
-// MARK: - BotBubble
 struct BotBubble: View {
     let msg: BotMsg
     @State private var chartOn = false
+    @State private var showTranslation = false
+
     var body: some View {
         HStack(alignment: .bottom, spacing: 8) {
             if msg.role == .bot {
@@ -138,16 +139,36 @@ struct BotBubble: View {
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
                 if !msg.text.isEmpty {
-                    Text(LocalizedStringKey(msg.text)).font(.subheadline).lineSpacing(3)
-                        .foregroundStyle(msg.role == .bot ? Color.primary : Color.white)
-                        .padding(.horizontal, 14).padding(.vertical, 11)
-                        .background(
-                            msg.role == .bot
-                                ? Color(uiColor: .secondarySystemGroupedBackground)
-                                : AppTheme.green,
-                            in: RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        )
-                        .shadow(color: .black.opacity(0.05), radius: 4, y: 2)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(LocalizedStringKey(msg.text)).font(.subheadline).lineSpacing(3)
+                            .foregroundStyle(msg.role == .bot ? Color.primary : Color.white)
+                            .padding(.horizontal, 14).padding(.vertical, 11)
+                            .background(
+                                msg.role == .bot
+                                    ? Color(uiColor: .secondarySystemGroupedBackground)
+                                    : AppTheme.green,
+                                in: RoundedRectangle(cornerRadius: 18, style: .continuous)
+                            )
+                            .shadow(color: .black.opacity(0.05), radius: 4, y: 2)
+                        
+                        if msg.role == .bot {
+                            Button {
+                                showTranslation = true
+                            } label: {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "translate")
+                                        .font(.caption2)
+                                    Text("Translate")
+                                        .font(.caption2)
+                                        .fontWeight(.semibold)
+                                }
+                                .foregroundStyle(AppTheme.green)
+                                .padding(.leading, 4)
+                                .padding(.top, 2)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
                 }
                 if let c = msg.chart { BotChartView(chart: c, on: chartOn) }
             }
@@ -155,11 +176,11 @@ struct BotBubble: View {
             if msg.role == .user { Spacer(minLength: 0) }
         }
         .frame(maxWidth: .infinity, alignment: msg.role == .bot ? .leading : .trailing)
+        .offlineTranslation(isPresented: $showTranslation, text: msg.text)
         .onAppear { withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.2)) { chartOn = true } }
     }
 }
 
-// MARK: - BotChartView
 struct BotChartView: View {
     let chart: BotChart; let on: Bool
     private var maxVal: Double { chart.bars.map(\.value).max() ?? 1 }
@@ -187,7 +208,6 @@ struct BotChartView: View {
     }
 }
 
-// MARK: - Typing indicator
 struct TypingBubble: View {
     @State private var phase = 0
     var body: some View {

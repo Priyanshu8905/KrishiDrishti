@@ -121,13 +121,13 @@ struct ScannerView: View {
         }
         .sheet(isPresented: $showPhotoPicker) {
             PhotoPickerView(onImage: { image in
-                Task { await vm.analyzePickedImage(image) }
+                Task { await vm.analyzeImage(image) }
             }, isPresented: $showPhotoPicker)
             .ignoresSafeArea()
         }
         .fullScreenCover(isPresented: $showCamera) {
             CameraView(isPresented: $showCamera) { image in
-                Task { await vm.analyzePickedImage(image) }
+                Task { await vm.analyzeImage(image) }
             }
             .ignoresSafeArea()
         }

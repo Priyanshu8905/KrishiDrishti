@@ -20,6 +20,7 @@
 		A011 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F011 /* NetworkMonitor.swift */; };
 		A012 /* OfflineCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012 /* OfflineCacheService.swift */; };
 		A013 /* FuzzySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* FuzzySearch.swift */; };
+		A013_TRANS /* OfflineTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013_TRANS /* OfflineTranslation.swift */; };
 		A014 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* ScannerViewModel.swift */; };
 		A015 /* KrishiBotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F015 /* KrishiBotViewModel.swift */; };
 		A016 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016 /* HomeView.swift */; };
@@ -35,9 +36,41 @@
 		A026 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F026 /* PrivacyInfo.xcprivacy */; };
 		A027 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027 /* CameraView.swift */; };
 		A028 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028 /* PhotoPickerView.swift */; };
+		ANEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift */; };
+		ANEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift */; };
+		ANEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift */; };
+		ANEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift */; };
+		ANEW0004 /* KrishiDrishti/Core/Network/APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0004 /* KrishiDrishti/Core/Network/APIClient.swift */; };
+		ANEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift */; };
+		ANEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift */; };
+		ANEW0007 /* KrishiDrishti/Services/AI/VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0007 /* KrishiDrishti/Services/AI/VisionService.swift */; };
+		ANEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift */; };
+		ANEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift */; };
+		ANEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift */; };
+		ANEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift */; };
+		ANEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift */; };
+		ANEW0013 /* KrishiDrishti/Services/Location/MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0013 /* KrishiDrishti/Services/Location/MapService.swift */; };
+		ANEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift */; };
+		ANEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift */; };
+		ANEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift */; };
+		ANEW0017 /* KrishiDrishti/Managers/PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0017 /* KrishiDrishti/Managers/PersistenceController.swift */; };
+		ANEW0018 /* KrishiDrishti/Managers/DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0018 /* KrishiDrishti/Managers/DataManager.swift */; };
+		ANEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift */; };
+		ANEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift */; };
+		ANEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift */; };
+		ANEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift */; };
+		ANEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift */; };
+		ANEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FNEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift */; };
+		C0FCEF392FCEB80100759A16 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FCEF352FCEB7EC00759A16 /* ARKit.framework */; };
+		C0FCEF3C2FCEB80300759A16 /* RealityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FCEF372FCEB7F800759A16 /* RealityKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C0FCEF352FCEB7EC00759A16 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		C0FCEF372FCEB7F800759A16 /* RealityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityKit.framework; path = System/Library/Frameworks/RealityKit.framework; sourceTree = SDKROOT; };
 		F001 /* KrishiDrishtiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishtiApp.swift; sourceTree = "<group>"; };
 		F002 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		F003 /* CropProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropProblem.swift; sourceTree = "<group>"; };
@@ -51,6 +84,7 @@
 		F011 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		F012 /* OfflineCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineCacheService.swift; sourceTree = "<group>"; };
 		F013 /* FuzzySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzySearch.swift; sourceTree = "<group>"; };
+		F013_TRANS /* OfflineTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTranslation.swift; sourceTree = "<group>"; };
 		F014 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
 		F015 /* KrishiBotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiBotViewModel.swift; sourceTree = "<group>"; };
 		F016 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -70,6 +104,31 @@
 		FCFGRELEASE /* Config/Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Release.xcconfig; sourceTree = SOURCE_ROOT; };
 		FCFGSECRETS /* Config/Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Secrets.xcconfig; sourceTree = SOURCE_ROOT; };
 		FCFGTEMPLATE /* Config/Secrets.template.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Secrets.template.xcconfig; sourceTree = SOURCE_ROOT; };
+		FNEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/DI/DIContainer.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Security/KeychainManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Security/SecurityManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Network/Endpoint.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0004 /* KrishiDrishti/Core/Network/APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Network/APIClient.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Core/Network/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AI/CoreMLService.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0007 /* KrishiDrishti/Services/AI/VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AI/VisionService.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AI/PredictionEngine.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AR/ARSessionManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/AR/ARViewContainer.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Notification/NotificationManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Location/LocationManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0013 /* KrishiDrishti/Services/Location/MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Location/MapService.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Motion/MotionManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Purchase/StoreManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Services/Purchase/PurchaseManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0017 /* KrishiDrishti/Managers/PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Managers/PersistenceController.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0018 /* KrishiDrishti/Managers/DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Managers/DataManager.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Repositories/WeatherRepository.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Repositories/CropProblemRepository.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Repositories/UserProfileRepository.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Views/AR/ARMappingView.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Views/Purchase/SubscriptionView.swift; sourceTree = SOURCE_ROOT; };
+		FNEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishti/Views/Scanner/CropVisualization3DView.swift; sourceTree = SOURCE_ROOT; };
 		FPRODUCT /* KrishiDrishti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrishiDrishti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,15 +137,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0FCEF3C2FCEB80300759A16 /* RealityKit.framework in Frameworks */,
+				C0FCEF392FCEB80100759A16 /* ARKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0FCEF342FCEB7EC00759A16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0FCEF372FCEB7F800759A16 /* RealityKit.framework */,
+				C0FCEF352FCEB7EC00759A16 /* ARKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		GAPP /* KrishiDrishti */ = {
 			isa = PBXGroup;
 			children = (
+				FNEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift */,
+				FNEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift */,
+				FNEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift */,
+				FNEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift */,
+				FNEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift */,
+				FNEW0004 /* KrishiDrishti/Core/Network/APIClient.swift */,
+				FNEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift */,
+				FNEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift */,
+				FNEW0007 /* KrishiDrishti/Services/AI/VisionService.swift */,
+				FNEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift */,
+				FNEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift */,
+				FNEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift */,
+				FNEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift */,
+				FNEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift */,
+				FNEW0013 /* KrishiDrishti/Services/Location/MapService.swift */,
+				FNEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift */,
+				FNEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift */,
+				FNEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift */,
+				FNEW0017 /* KrishiDrishti/Managers/PersistenceController.swift */,
+				FNEW0018 /* KrishiDrishti/Managers/DataManager.swift */,
+				FNEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift */,
+				FNEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift */,
+				FNEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift */,
+				FNEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift */,
+				FNEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift */,
 				GCONFIG /* Config */,
 				GAPPDIR /* App */,
 				GMODELS /* Models */,
@@ -152,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				GAPP /* KrishiDrishti */,
+				C0FCEF342FCEB7EC00759A16 /* Frameworks */,
 				GPRODUCTS /* Products */,
 			);
 			sourceTree = "<group>";
@@ -173,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				F013 /* FuzzySearch.swift */,
+				F013_TRANS /* OfflineTranslation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -322,6 +419,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ANEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift in Sources */,
+				ANEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift in Sources */,
+				ANEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift in Sources */,
+				ANEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift in Sources */,
+				ANEW0004 /* KrishiDrishti/Core/Network/APIClient.swift in Sources */,
+				ANEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift in Sources */,
+				ANEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift in Sources */,
+				ANEW0007 /* KrishiDrishti/Services/AI/VisionService.swift in Sources */,
+				ANEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift in Sources */,
+				ANEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift in Sources */,
+				ANEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift in Sources */,
+				ANEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift in Sources */,
+				ANEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift in Sources */,
+				ANEW0013 /* KrishiDrishti/Services/Location/MapService.swift in Sources */,
+				ANEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift in Sources */,
+				ANEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift in Sources */,
+				ANEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift in Sources */,
+				ANEW0017 /* KrishiDrishti/Managers/PersistenceController.swift in Sources */,
+				ANEW0018 /* KrishiDrishti/Managers/DataManager.swift in Sources */,
+				ANEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift in Sources */,
+				ANEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift in Sources */,
+				ANEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift in Sources */,
+				ANEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift in Sources */,
+				ANEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift in Sources */,
+				ANEW0024 /* KrishiDrishti/Views/Scanner/CropVisualization3DView.swift in Sources */,
+				ANEW0000 /* KrishiDrishti/Core/DI/DIContainer.swift in Sources */,
+				ANEW0001 /* KrishiDrishti/Core/Security/KeychainManager.swift in Sources */,
+				ANEW0002 /* KrishiDrishti/Core/Security/SecurityManager.swift in Sources */,
+				ANEW0003 /* KrishiDrishti/Core/Network/Endpoint.swift in Sources */,
+				ANEW0004 /* KrishiDrishti/Core/Network/APIClient.swift in Sources */,
+				ANEW0005 /* KrishiDrishti/Core/Network/NetworkManager.swift in Sources */,
+				ANEW0006 /* KrishiDrishti/Services/AI/CoreMLService.swift in Sources */,
+				ANEW0007 /* KrishiDrishti/Services/AI/VisionService.swift in Sources */,
+				ANEW0008 /* KrishiDrishti/Services/AI/PredictionEngine.swift in Sources */,
+				ANEW0009 /* KrishiDrishti/Services/AR/ARSessionManager.swift in Sources */,
+				ANEW0010 /* KrishiDrishti/Services/AR/ARViewContainer.swift in Sources */,
+				ANEW0011 /* KrishiDrishti/Services/Notification/NotificationManager.swift in Sources */,
+				ANEW0012 /* KrishiDrishti/Services/Location/LocationManager.swift in Sources */,
+				ANEW0013 /* KrishiDrishti/Services/Location/MapService.swift in Sources */,
+				ANEW0014 /* KrishiDrishti/Services/Motion/MotionManager.swift in Sources */,
+				ANEW0015 /* KrishiDrishti/Services/Purchase/StoreManager.swift in Sources */,
+				ANEW0016 /* KrishiDrishti/Services/Purchase/PurchaseManager.swift in Sources */,
+				ANEW0017 /* KrishiDrishti/Managers/PersistenceController.swift in Sources */,
+				ANEW0018 /* KrishiDrishti/Managers/DataManager.swift in Sources */,
+				ANEW0019 /* KrishiDrishti/Repositories/WeatherRepository.swift in Sources */,
+				ANEW0020 /* KrishiDrishti/Repositories/CropProblemRepository.swift in Sources */,
+				ANEW0021 /* KrishiDrishti/Repositories/UserProfileRepository.swift in Sources */,
+				ANEW0022 /* KrishiDrishti/Views/AR/ARMappingView.swift in Sources */,
+				ANEW0023 /* KrishiDrishti/Views/Purchase/SubscriptionView.swift in Sources */,
 				A001 /* KrishiDrishtiApp.swift in Sources */,
 				A002 /* AppTheme.swift in Sources */,
 				A003 /* CropProblem.swift in Sources */,
@@ -335,6 +481,7 @@
 				A011 /* NetworkMonitor.swift in Sources */,
 				A012 /* OfflineCacheService.swift in Sources */,
 				A013 /* FuzzySearch.swift in Sources */,
+				A013_TRANS /* OfflineTranslation.swift in Sources */,
 				A014 /* ScannerViewModel.swift in Sources */,
 				A015 /* KrishiBotViewModel.swift in Sources */,
 				A016 /* HomeView.swift in Sources */,

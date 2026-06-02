@@ -8,13 +8,15 @@ enum ScanCategory: String, CaseIterable, Hashable {
     case all = "All", highRisk = "High Risk", healthy = "Healthy"
 }
 
-// MARK: - Root
 struct HomeView: View {
     @StateObject private var vm      = ScannerViewModel()
     @StateObject private var weather = WeatherService()
     @StateObject private var profile = UserProfile()
     @StateObject private var network = NetworkMonitor.shared
     @State private var selectedTab: AppTab = .field
+
+    @State private var showPhotoPicker = false
+    @State private var showCamera     = false
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -27,10 +29,47 @@ struct HomeView: View {
         }
         .tint(AppTheme.green)
         .onAppear { weather.start() }
+        .overlay(alignment: .bottomTrailing) {
+            if selectedTab == .field && vm.scanState == .idle {
+                Button {
+                    showCamera = true
+                } label: {
+                    ZStack {
+                        Circle()
+                            .fill(AppTheme.primaryGradient)
+                            .frame(width: 60, height: 60)
+                            .shadow(color: AppTheme.green.opacity(0.3), radius: 8, y: 4)
+                        Image(systemName: "camera.viewfinder")
+                            .font(.system(size: 26, weight: .bold))
+                            .foregroundStyle(.white)
+                    }
+                }
+                .padding(.trailing, 20)
+                .padding(.bottom, 90)
+            }
+        }
+        .sheet(isPresented: $showPhotoPicker) {
+            PhotoPickerView(onImage: { image in
+                Task { await vm.analyzeImage(image) }
+            }, isPresented: $showPhotoPicker)
+            .ignoresSafeArea()
+        }
+        .fullScreenCover(isPresented: $showCamera) {
+            CameraView(isPresented: $showCamera, onImage: { image in
+                Task { await vm.analyzeImage(image) }
+            }, onSelectGallery: {
+                showPhotoPicker = true
+            })
+            .ignoresSafeArea()
+        }
+        .sheet(isPresented: $vm.showResult) {
+            if let dx = vm.currentDiagnosis {
+                ResultDetailView(diagnosis: dx, vm: vm).onDisappear { vm.reset() }
+            }
+        }
     }
 }
 
-// MARK: - Dashboard
 struct DashboardView: View {
     @ObservedObject var vm:      ScannerViewModel
     @ObservedObject var weather: WeatherService
@@ -43,34 +82,64 @@ struct DashboardView: View {
     @State private var showProfile    = false
     @State private var showHistory    = false
     @State private var historyFilter: ScanCategory = .all
-    @State private var showPhotoPicker = false
-    @State private var showCamera     = false
+    @State private var showARMapping = false
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 0) {
-                    greetingCard
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 12)
+            ZStack {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        greetingCard
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 12)
 
-                    weatherCard
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 12)
+                        weatherCard
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 12)
 
-                    advisoryCard
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 12)
+                        advisoryCard
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 12)
 
-                    statsRow
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 12)
+                        statsRow
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 12)
 
-                    recentSection
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 120) // clearance for the bottom bar
+
+                        recentSection
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 120)
+                    }
+                    .padding(.top, 12)
                 }
-                .padding(.top, 12)
+                
+                if vm.scanState == .scanning {
+                    Color.black.opacity(0.65)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
+                    
+                    VStack(spacing: 24) {
+                        ProgressView()
+                            .tint(.white)
+                            .scaleEffect(1.4)
+                        
+                        Text("Analyzing Crop...")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            stageRow(label: "Uploading Image", active: vm.processingStage == "Uploading")
+                            stageRow(label: "Detecting Crop Type", active: vm.processingStage == "Detecting Crop")
+                            stageRow(label: "Analyzing Pathologies", active: vm.processingStage.contains("Analyzing Disease"))
+                            stageRow(label: "Generating Diagnosis Report", active: vm.processingStage == "Generating Report")
+                        }
+                        .padding(.top, 12)
+                    }
+                    .padding(32)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 22))
+                    .shadow(radius: 12)
+                }
             }
             .background(Color(uiColor: .systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
@@ -81,6 +150,7 @@ struct DashboardView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(AppTheme.green)
                 }
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { showProfile = true } label: {
                         Image(systemName: "person.crop.circle.fill")
@@ -90,34 +160,44 @@ struct DashboardView: View {
                     .buttonStyle(.plain)
                 }
             }
-            .overlay(alignment: .bottom) { analyzeBar }
-        }
-        .sheet(isPresented: $vm.showResult) {
-            if let dx = vm.currentDiagnosis {
-                ResultDetailView(diagnosis: dx, vm: vm).onDisappear { vm.reset() }
-            }
         }
         .sheet(isPresented: $showProfile)  { ProfileView(profile: profile) }
         .sheet(isPresented: $showHistory)  { HistoryView(vm: vm, filter: $historyFilter) }
+        .sheet(isPresented: $showARMapping) { ARMappingView() }
+
         .sheet(item: $tapped)              { ResultDetailView(diagnosis: $0, vm: vm) }
-        .sheet(isPresented: $showPhotoPicker) {
-            PhotoPickerView(onImage: { image in
-                Task { await vm.analyzePickedImage(image) }
-            }, isPresented: $showPhotoPicker)
-            .ignoresSafeArea()
-        }
-        .fullScreenCover(isPresented: $showCamera) {
-            CameraView(isPresented: $showCamera) { image in
-                Task { await vm.analyzePickedImage(image) }
+        .alert("Analysis Error", isPresented: Binding(
+            get: {
+                if case .error = vm.scanState { return true }
+                return false
+            },
+            set: { _ in vm.reset() }
+        )) {
+            Button("Dismiss", role: .cancel) { vm.reset() }
+        } message: {
+            if case .error(let msg) = vm.scanState {
+                Text(msg)
             }
-            .ignoresSafeArea()
         }
         .onAppear {
             withAnimation(.easeOut(duration: 0.4).delay(0.15)) { appeared = true }
         }
     }
 
-    // MARK: - Greeting Card
+    private func stageRow(label: String, active: Bool) -> some View {
+        HStack(spacing: 8) {
+            Circle()
+                .fill(active ? AppTheme.greenLight : Color.white.opacity(0.3))
+                .frame(width: 8, height: 8)
+                .scaleEffect(active ? 1.2 : 1.0)
+                .animation(active ? .easeInOut(duration: 0.6).repeatForever(autoreverses: true) : .default, value: active)
+            Text(label)
+                .font(.footnote)
+                .fontWeight(active ? .bold : .regular)
+                .foregroundStyle(active ? .white : .white.opacity(0.6))
+        }
+    }
+
     private var greetingCard: some View {
         HStack(spacing: 14) {
             Text(profile.avatar)
@@ -182,7 +262,6 @@ struct DashboardView: View {
         .opacity(appeared ? 1 : 0)
     }
 
-    // MARK: - Weather Card
     @ViewBuilder private var weatherCard: some View {
         if weather.isLoading {
             HStack(spacing: 12) {
@@ -255,7 +334,7 @@ struct DashboardView: View {
                 }
                 .padding(20)
             }
-            .fixedSize(horizontal: false, vertical: true) // grows with content, no clipping
+            .fixedSize(horizontal: false, vertical: true)
             .opacity(appeared ? 1 : 0)
 
         } else {
@@ -281,7 +360,6 @@ struct DashboardView: View {
         }
     }
 
-    // MARK: - Advisory Card
     @ViewBuilder private var advisoryCard: some View {
         if let w = weather.weather {
             HStack(alignment: .top, spacing: 12) {
@@ -305,7 +383,7 @@ struct DashboardView: View {
                     Text(w.advisory(for: profile.crops))
                         .font(.subheadline)
                         .lineSpacing(3)
-                        .fixedSize(horizontal: false, vertical: true) // wraps properly
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .padding(16)
@@ -320,7 +398,6 @@ struct DashboardView: View {
         }
     }
 
-    // MARK: - Stats Row
     private var statsRow: some View {
         HStack(spacing: 10) {
             Button { historyFilter = .all; showHistory = true } label: {
@@ -347,7 +424,6 @@ struct DashboardView: View {
         .opacity(appeared ? 1 : 0)
     }
 
-    // MARK: - Recent Scans
     private var recentSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -388,74 +464,8 @@ struct DashboardView: View {
         }
         .opacity(appeared ? 1 : 0)
     }
-
-    // MARK: - Bottom Analyze Bar
-    private var analyzeBar: some View {
-        VStack(spacing: 0) {
-            Divider()
-            HStack(spacing: 10) {
-
-                // Gallery
-                Button {
-                    guard vm.scanState == .idle else { return }
-                    showPhotoPicker = true
-                } label: {
-                    VStack(spacing: 4) {
-                        Image(systemName: "photo.on.rectangle")
-                            .font(.system(size: 20))
-                        Text("Gallery")
-                            .font(.caption2)
-                            .fontWeight(.semibold)
-                    }
-                    .foregroundStyle(AppTheme.green)
-                    .frame(width: 72, height: 56)
-                    .background(Color(uiColor: .secondarySystemGroupedBackground),
-                                in: RoundedRectangle(cornerRadius: 14))
-                    .overlay(RoundedRectangle(cornerRadius: 14)
-                        .stroke(AppTheme.green.opacity(0.25), lineWidth: 1))
-                }
-                .disabled(vm.scanState != .idle)
-                .buttonStyle(.plain)
-
-                // Camera / Analyze
-                Button {
-                    guard vm.scanState == .idle else { return }
-                    showCamera = true
-                } label: {
-                    HStack(spacing: 8) {
-                        if vm.scanState == .scanning {
-                            ProgressView().tint(.white).scaleEffect(0.85)
-                            Text("Analysing…")
-                                .font(.headline).fontWeight(.black)
-                        } else {
-                            Image(systemName: "camera.fill")
-                                .font(.system(size: 17, weight: .semibold))
-                            Text("Analyze Crop")
-                                .font(.headline).fontWeight(.black)
-                        }
-                    }
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(AppTheme.primaryGradient)
-                            .shadow(color: AppTheme.green.opacity(0.4), radius: 10, y: 5)
-                    )
-                }
-                .disabled(vm.scanState != .idle)
-                .buttonStyle(.plain)
-                .animation(.spring(response: 0.3), value: vm.scanState)
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 10)
-            .padding(.bottom, 24) // safe area breathing room
-            .background(.ultraThinMaterial)
-        }
-    }
 }
 
-// MARK: - Helper
 private extension View {
     func flexibleFrame(minWidth: CGFloat, maxWidth: CGFloat) -> some View {
         self.frame(minWidth: minWidth, maxWidth: maxWidth)
