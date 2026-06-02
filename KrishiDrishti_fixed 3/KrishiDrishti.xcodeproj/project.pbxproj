@@ -1,0 +1,561 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A001 /* KrishiDrishtiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001 /* KrishiDrishtiApp.swift */; };
+		A002 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F002 /* AppTheme.swift */; };
+		A003 /* CropProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003 /* CropProblem.swift */; };
+		A004 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004 /* WeatherModel.swift */; };
+		A005 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005 /* UserProfile.swift */; };
+		A006 /* TreatmentStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006 /* TreatmentStep.swift */; };
+		A007 /* GeminiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007 /* GeminiService.swift */; };
+		A008 /* SarvamTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008 /* SarvamTTSService.swift */; };
+		A009 /* VisionAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F009 /* VisionAnalysisService.swift */; };
+		A010 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010 /* WeatherService.swift */; };
+		A011 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F011 /* NetworkMonitor.swift */; };
+		A012 /* OfflineCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012 /* OfflineCacheService.swift */; };
+		A013 /* FuzzySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* FuzzySearch.swift */; };
+		A014 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* ScannerViewModel.swift */; };
+		A015 /* KrishiBotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F015 /* KrishiBotViewModel.swift */; };
+		A016 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016 /* HomeView.swift */; };
+		A017 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017 /* HistoryView.swift */; };
+		A018 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018 /* ScannerView.swift */; };
+		A019 /* ResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F019 /* ResultDetailView.swift */; };
+		A020 /* BotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F020 /* BotView.swift */; };
+		A021 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021 /* ProfileView.swift */; };
+		A022 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022 /* OnboardingView.swift */; };
+		A023 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023 /* SharedComponents.swift */; };
+		A024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F024 /* Assets.xcassets */; };
+		A025 /* Diseases.json in Resources */ = {isa = PBXBuildFile; fileRef = F025 /* Diseases.json */; };
+		A026 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F026 /* PrivacyInfo.xcprivacy */; };
+		A027 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027 /* CameraView.swift */; };
+		A028 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028 /* PhotoPickerView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F001 /* KrishiDrishtiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishtiApp.swift; sourceTree = "<group>"; };
+		F002 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		F003 /* CropProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropProblem.swift; sourceTree = "<group>"; };
+		F004 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		F005 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		F006 /* TreatmentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentStep.swift; sourceTree = "<group>"; };
+		F007 /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
+		F008 /* SarvamTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SarvamTTSService.swift; sourceTree = "<group>"; };
+		F009 /* VisionAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAnalysisService.swift; sourceTree = "<group>"; };
+		F010 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		F011 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		F012 /* OfflineCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineCacheService.swift; sourceTree = "<group>"; };
+		F013 /* FuzzySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzySearch.swift; sourceTree = "<group>"; };
+		F014 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
+		F015 /* KrishiBotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiBotViewModel.swift; sourceTree = "<group>"; };
+		F016 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F017 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		F018 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		F019 /* ResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailView.swift; sourceTree = "<group>"; };
+		F020 /* BotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotView.swift; sourceTree = "<group>"; };
+		F021 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F022 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F023 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+		F024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F025 /* Diseases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Diseases.json; sourceTree = "<group>"; };
+		F026 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F027 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		F028 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		FCFGDEBUG /* Config/Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		FCFGRELEASE /* Config/Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		FCFGSECRETS /* Config/Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Secrets.xcconfig; sourceTree = SOURCE_ROOT; };
+		FCFGTEMPLATE /* Config/Secrets.template.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Secrets.template.xcconfig; sourceTree = SOURCE_ROOT; };
+		FPRODUCT /* KrishiDrishti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrishiDrishti.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BPFRAMEWORKS /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		GAPP /* KrishiDrishti */ = {
+			isa = PBXGroup;
+			children = (
+				GCONFIG /* Config */,
+				GAPPDIR /* App */,
+				GMODELS /* Models */,
+				GSERVICES /* Services */,
+				GUTILS /* Utils */,
+				GVIEWMODELS /* ViewModels */,
+				GVIEWS /* Views */,
+				GRESOURCES /* Resources */,
+			);
+			path = KrishiDrishti;
+			sourceTree = "<group>";
+		};
+		GAPPDIR /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F001 /* KrishiDrishtiApp.swift */,
+				F002 /* AppTheme.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		GCONFIG /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				FCFGDEBUG /* Config/Debug.xcconfig */,
+				FCFGRELEASE /* Config/Release.xcconfig */,
+				FCFGSECRETS /* Config/Secrets.xcconfig */,
+				FCFGTEMPLATE /* Config/Secrets.template.xcconfig */,
+			);
+			path = Config;
+			sourceTree = SOURCE_ROOT;
+		};
+		GMODELS /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F003 /* CropProblem.swift */,
+				F004 /* WeatherModel.swift */,
+				F005 /* UserProfile.swift */,
+				F006 /* TreatmentStep.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		GPRODUCTS /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FPRODUCT /* KrishiDrishti.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GRESOURCES /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F024 /* Assets.xcassets */,
+				F025 /* Diseases.json */,
+				F026 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		GROOT = {
+			isa = PBXGroup;
+			children = (
+				GAPP /* KrishiDrishti */,
+				GPRODUCTS /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GSERVICES /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F007 /* GeminiService.swift */,
+				F008 /* SarvamTTSService.swift */,
+				F009 /* VisionAnalysisService.swift */,
+				F010 /* WeatherService.swift */,
+				F011 /* NetworkMonitor.swift */,
+				F012 /* OfflineCacheService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		GUTILS /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F013 /* FuzzySearch.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		GVIEWMODELS /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F014 /* ScannerViewModel.swift */,
+				F015 /* KrishiBotViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		GVIEWS /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				GVIEWSHOME /* Home */,
+				GVIEWSSCANNER /* Scanner */,
+				GVIEWSBOT /* Bot */,
+				GVIEWSPROFILE /* Profile */,
+				GVIEWSONBOARDING /* Onboarding */,
+				GVIEWSCOMPONENTS /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		GVIEWSBOT /* Bot */ = {
+			isa = PBXGroup;
+			children = (
+				F020 /* BotView.swift */,
+			);
+			path = Bot;
+			sourceTree = "<group>";
+		};
+		GVIEWSCOMPONENTS /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F023 /* SharedComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		GVIEWSHOME /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F016 /* HomeView.swift */,
+				F017 /* HistoryView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		GVIEWSONBOARDING /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F022 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		GVIEWSPROFILE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F021 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		GVIEWSSCANNER /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				F027 /* CameraView.swift */,
+				F028 /* PhotoPickerView.swift */,
+				F018 /* ScannerView.swift */,
+				F019 /* ResultDetailView.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TTARGET /* KrishiDrishti */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCLTARGET /* Build configuration list for PBXNativeTarget "KrishiDrishti" */;
+			buildPhases = (
+				BPSOURCES /* Sources */,
+				BPRESOURCES /* Resources */,
+				BPFRAMEWORKS /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KrishiDrishti;
+			productName = KrishiDrishti;
+			productReference = FPRODUCT /* KrishiDrishti.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PPROJECT /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					TTARGET = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = BCLPROJECT /* Build configuration list for PBXProject "KrishiDrishti" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = GROOT;
+			productRefGroup = GPRODUCTS /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TTARGET /* KrishiDrishti */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BPRESOURCES /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A024 /* Assets.xcassets in Resources */,
+				A025 /* Diseases.json in Resources */,
+				A026 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BPSOURCES /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001 /* KrishiDrishtiApp.swift in Sources */,
+				A002 /* AppTheme.swift in Sources */,
+				A003 /* CropProblem.swift in Sources */,
+				A004 /* WeatherModel.swift in Sources */,
+				A005 /* UserProfile.swift in Sources */,
+				A006 /* TreatmentStep.swift in Sources */,
+				A007 /* GeminiService.swift in Sources */,
+				A008 /* SarvamTTSService.swift in Sources */,
+				A009 /* VisionAnalysisService.swift in Sources */,
+				A010 /* WeatherService.swift in Sources */,
+				A011 /* NetworkMonitor.swift in Sources */,
+				A012 /* OfflineCacheService.swift in Sources */,
+				A013 /* FuzzySearch.swift in Sources */,
+				A014 /* ScannerViewModel.swift in Sources */,
+				A015 /* KrishiBotViewModel.swift in Sources */,
+				A016 /* HomeView.swift in Sources */,
+				A017 /* HistoryView.swift in Sources */,
+				A018 /* ScannerView.swift in Sources */,
+				A019 /* ResultDetailView.swift in Sources */,
+				A020 /* BotView.swift in Sources */,
+				A021 /* ProfileView.swift in Sources */,
+				A022 /* OnboardingView.swift in Sources */,
+				A023 /* SharedComponents.swift in Sources */,
+				A027 /* CameraView.swift in Sources */,
+				A028 /* PhotoPickerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BCDEBUG_PROJ /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 73B8W4ZN6V;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BCDEBUG_TARGET /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCFGDEBUG /* Config/Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 73B8W4ZN6V;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = KrishiDrishti/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Com.KrishiDrishti;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCRELEASE_PROJ /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 73B8W4ZN6V;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCRELEASE_TARGET /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCFGRELEASE /* Config/Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 73B8W4ZN6V;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = KrishiDrishti/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Com.KrishiDrishti;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCLPROJECT /* Build configuration list for PBXProject "KrishiDrishti" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCDEBUG_PROJ /* Debug */,
+				BCRELEASE_PROJ /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCLTARGET /* Build configuration list for PBXNativeTarget "KrishiDrishti" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCDEBUG_TARGET /* Debug */,
+				BCRELEASE_TARGET /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = PPROJECT /* Project object */;
+}

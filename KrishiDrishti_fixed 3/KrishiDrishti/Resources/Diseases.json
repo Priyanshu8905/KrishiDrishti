@@ -1,0 +1,62 @@
+[
+  {
+    "id": "f3aeb8d9-c3b4-4f72-9d1e-4e8a9b2e5f1a",
+    "name": "Wheat Rust",
+    "crops": ["Wheat"],
+    "symptoms": ["Orange-red pustules on leaves and stems", "Leaf yellowing", "Premature leaf death"],
+    "causes": ["Fungal pathogen Puccinia spp."],
+    "treatments": ["Use resistant varieties", "Fungicide application", "Crop rotation"],
+    "tags": ["fungal", "wheat", "rust", "disease"],
+    "severity": "High"
+  },
+  {
+    "id": "b6f7a1d2-9a1b-4c3c-9f9a-8a7d9f2e4b3c",
+    "name": "Rice Blast",
+    "crops": ["Rice"],
+    "symptoms": ["Diamond-shaped lesions on leaves", "Neck and collar rot", "Reduced grain yield"],
+    "causes": ["Fungus Magnaporthe oryzae"],
+    "treatments": ["Resistant cultivars", "Balanced fertilization", "Fungicide sprays"],
+    "tags": ["fungal", "rice", "blast", "disease"],
+    "severity": "High"
+  },
+  {
+    "id": "d4e6c3f2-8b0a-4d1e-9f4b-5a6d7e8f9c0b",
+    "name": "Late Blight (Potato)",
+    "crops": ["Potato"],
+    "symptoms": ["Dark brown lesions on leaves", "White fungal growth under leaves", "Tuber rot"],
+    "causes": ["Pathogen Phytophthora infestans"],
+    "treatments": ["Resistant varieties", "Fungicides", "Field sanitation"],
+    "tags": ["fungal", "potato", "late blight", "disease"],
+    "severity": "High"
+  },
+  {
+    "id": "a1d2c3f4-b5e6-7a8b-9c0d-e1f2a3b4c5d6",
+    "name": "Early Blight (Tomato)",
+    "crops": ["Tomato"],
+    "symptoms": ["Dark concentric leaf spots", "Yellowing of old leaves", "Fruit rot"],
+    "causes": ["Fungus Alternaria solani"],
+    "treatments": ["Crop rotation", "Fungicide application", "Remove infected debris"],
+    "tags": ["fungal", "tomato", "early blight", "disease"],
+    "severity": "Medium"
+  },
+  {
+    "id": "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f",
+    "name": "Powdery Mildew",
+    "crops": ["Various crops"],
+    "symptoms": ["White powdery fungal growth on leaves", "Leaf curling", "Premature leaf drop"],
+    "causes": ["Various Erysiphales fungi"],
+    "treatments": ["Resistant varieties", "Fungicide sprays", "Good air circulation"],
+    "tags": ["fungal", "powdery mildew", "leaf disease"],
+    "severity": "Medium"
+  },
+  {
+    "id": "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+    "name": "Leaf Spot",
+    "crops": ["Various crops"],
+    "symptoms": ["Small dark spots on leaves", "Yellow halos around spots", "Leaf drop"],
+    "causes": ["Fungi such as Cercospora spp."],
+    "treatments": ["Fungicides", "Remove infected leaves", "Crop rotation"],
+    "tags": ["fungal", "leaf spot", "disease"],
+    "severity": "Low"
+  }
+]
