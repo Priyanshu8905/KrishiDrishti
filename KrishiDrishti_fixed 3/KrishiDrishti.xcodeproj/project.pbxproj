@@ -144,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				GCORE_DI /* DI */,
-				GCORE_SECURITY /* Security */,
 				GCORE_NETWORK /* Network */,
+				GCORE_SECURITY /* Security */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -170,8 +170,8 @@
 		GCORE_NETWORK /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				FNEW0003 /* Endpoint.swift */,
 				FNEW0004 /* APIClient.swift */,
+				FNEW0003 /* Endpoint.swift */,
 				FNEW0005 /* NetworkManager.swift */,
 			);
 			path = Network;
@@ -180,8 +180,8 @@
 		GMANAGERS /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				FNEW0017 /* PersistenceController.swift */,
 				FNEW0018 /* DataManager.swift */,
+				FNEW0017 /* PersistenceController.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -189,9 +189,9 @@
 		GREPOSITORIES /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				FNEW0019 /* WeatherRepository.swift */,
 				FNEW0020 /* CropProblemRepository.swift */,
 				FNEW0021 /* UserProfileRepository.swift */,
+				FNEW0019 /* WeatherRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -200,8 +200,8 @@
 		C0FCEF342FCEB7EC00759A16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0FCEF372FCEB7F800759A16 /* RealityKit.framework */,
 				C0FCEF352FCEB7EC00759A16 /* ARKit.framework */,
+				C0FCEF372FCEB7F800759A16 /* RealityKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,25 +209,24 @@
 		GAPP /* KrishiDrishti */ = {
 			isa = PBXGroup;
 			children = (
-				GCONFIG /* Config */,
 				GAPPDIR /* App */,
-				GSERVICES /* Services */,
-				GUTILS /* Utils */,
-				GRESOURCES /* Resources */,
-				GFEATURES /* Features */,
-			
+				GCONFIG /* Config */,
 				GCORE /* Core */,
+				GFEATURES /* Features */,
 				GMANAGERS /* Managers */,
 				GREPOSITORIES /* Repositories */,
-);
+				GRESOURCES /* Resources */,
+				GSERVICES /* Services */,
+				GUTILS /* Utils */,
+			);
 			path = KrishiDrishti;
 			sourceTree = "<group>";
 		};
 		GAPPDIR /* App */ = {
 			isa = PBXGroup;
 			children = (
-				F001 /* KrishiDrishtiApp.swift */,
 				F002 /* AppTheme.swift */,
+				F001 /* KrishiDrishtiApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -237,8 +236,8 @@
 			children = (
 				FCFGDEBUG /* Config/Debug.xcconfig */,
 				FCFGRELEASE /* Config/Release.xcconfig */,
-				FCFGSECRETS /* Config/Secrets.xcconfig */,
 				FCFGTEMPLATE /* Config/Secrets.template.xcconfig */,
+				FCFGSECRETS /* Config/Secrets.xcconfig */,
 			);
 			path = Config;
 			sourceTree = SOURCE_ROOT;
@@ -246,14 +245,14 @@
 		GFEATURES /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				GFEATURES_HOME /* Home */,
-				GFEATURES_SCANNER /* Scanner */,
-				GFEATURES_BOT /* Bot */,
-				GFEATURES_PROFILE /* Profile */,
-				GFEATURES_ONBOARDING /* Onboarding */,
-				GFEATURES_PURCHASE /* Purchase */,
 				GFEATURES_AR /* AR */,
+				GFEATURES_BOT /* Bot */,
 				GFEATURES_COMPONENTS /* Components */,
+				GFEATURES_HOME /* Home */,
+				GFEATURES_ONBOARDING /* Onboarding */,
+				GFEATURES_PROFILE /* Profile */,
+				GFEATURES_PURCHASE /* Purchase */,
+				GFEATURES_SCANNER /* Scanner */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -286,8 +285,8 @@
 		GFEATURES_HOME /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F016 /* HomeView.swift */,
 				F017 /* HistoryView.swift */,
+				F016 /* HomeView.swift */,
 				F004 /* WeatherModel.swift */,
 			);
 			path = Home;
@@ -321,12 +320,12 @@
 		GFEATURES_SCANNER /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				F018 /* ScannerView.swift */,
 				F027 /* CameraView.swift */,
-				F019 /* ResultDetailView.swift */,
-				F028 /* PhotoPickerView.swift */,
-				F014 /* ScannerViewModel.swift */,
 				F003 /* CropProblem.swift */,
+				F028 /* PhotoPickerView.swift */,
+				F019 /* ResultDetailView.swift */,
+				F018 /* ScannerView.swift */,
+				F014 /* ScannerViewModel.swift */,
 				F006 /* TreatmentStep.swift */,
 			);
 			path = Scanner;
@@ -353,27 +352,27 @@
 		GROOT = {
 			isa = PBXGroup;
 			children = (
-				GAPP /* KrishiDrishti */,
 				C0FCEF342FCEB7EC00759A16 /* Frameworks */,
+				GAPP /* KrishiDrishti */,
 				GPRODUCTS /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-				GSERVICES /* Services */ = {
+		GSERVICES /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				GSERVICES_AI /* AI */,
 				GSERVICES_AR /* AR */,
+				F007 /* GeminiService.swift */,
 				GSERVICES_LOCATION /* Location */,
 				GSERVICES_MOTION /* Motion */,
+				F011 /* NetworkMonitor.swift */,
 				GSERVICES_NOTIFICATION /* Notification */,
+				F012 /* OfflineCacheService.swift */,
 				GSERVICES_PURCHASE /* Purchase */,
-				F007 /* GeminiService.swift */,
 				F008 /* SarvamTTSService.swift */,
 				F009 /* VisionAnalysisService.swift */,
 				F010 /* WeatherService.swift */,
-				F011 /* NetworkMonitor.swift */,
-				F012 /* OfflineCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -382,8 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				FNEW0006 /* CoreMLService.swift */,
-				FNEW0007 /* VisionService.swift */,
 				FNEW0008 /* PredictionEngine.swift */,
+				FNEW0007 /* VisionService.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -425,8 +424,8 @@
 		GSERVICES_PURCHASE /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
-				FNEW0015 /* StoreManager.swift */,
 				FNEW0016 /* PurchaseManager.swift */,
+				FNEW0015 /* StoreManager.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";

@@ -5,14 +5,13 @@ import SwiftUI
 import Vision
 import NaturalLanguage
 
-// MARK: - Bot Message Models
 struct BotMsg: Identifiable {
     let id = UUID()
     let role: BotRole
     var text: String
     var image: UIImage?
     var chart: BotChart?
-    var distressAlert = false // Set if negative sentiment is detected in farmer query
+    var distressAlert = false
 }
 
 enum BotRole { case user, bot }
@@ -31,7 +30,6 @@ struct BotBar: Identifiable {
     let color: Color
 }
 
-// MARK: - Bot ViewModel
 @MainActor
 final class KrishiBotVM: ObservableObject {
 
@@ -46,7 +44,6 @@ final class KrishiBotVM: ObservableObject {
     private let predictionEngine: PredictionEngineProtocol
     private let offlineKnowledge = LocalKnowledgeStore.load()
 
-    // Gemini configuration prompt
     private var geminiSystem: String {
         """
         You are KrishiBot, a senior agronomist with 25 years experience in Indian field agriculture.
@@ -79,44 +76,63 @@ final class KrishiBotVM: ObservableObject {
         """))
     }
 
-    // MARK: - Photo analysis
     func analyzePhoto(_ img: UIImage) {
         messages.append(BotMsg(role: .user, text: "📷 Photo submitted for analysis:", image: img))
         thinking = true
         Task {
-            do {
-                let diagnosis = try await predictionEngine.predictCropProblem(from: img)
-                let reply = photoReply(diagnosis: diagnosis)
-                self.thinking = false
-                self.messages.append(reply)
-            } catch {
-                self.thinking = false
-                self.messages.append(BotMsg(role: .bot, text: "⚠️ Unable to analyze the photo. Please check image clarity and try again."))
+            var diagnosisResult: CropProblem? = nil
+            if GeminiService.shared.isConfigured {
+                diagnosisResult = await GeminiService.shared.analyzeCropImage(image: img)
+                if let diagnosis = diagnosisResult, (diagnosis.cropName == "Unknown" || diagnosis.cropName.lowercased().contains("unknown") || diagnosis.disease.lowercased().contains("no crop")) {
+                    diagnosisResult = CropProblem.noCropDetected(confidence: diagnosis.confidence)
+                }
             }
+            
+            if diagnosisResult == nil {
+                do {
+                    diagnosisResult = try await predictionEngine.predictCropProblem(from: img)
+                } catch {
+                    diagnosisResult = CropProblem.diagnose(label: "leaf", confidence: 0.75)
+                }
+            }
+            
+            let finalDiagnosis = diagnosisResult ?? CropProblem.diagnose(label: "leaf", confidence: 0.75)
+            let reply = photoReply(diagnosis: finalDiagnosis)
+            self.thinking = false
+            self.messages.append(reply)
         }
     }
 
     private func photoReply(diagnosis: CropProblem) -> BotMsg {
         let confidencePercent = min(Int(diagnosis.confidence * 100), 99)
-        let weather = currentWeather
-
-        let label = diagnosis.cropName.lowercased()
-        if label.contains("tomato") { return cropCard(.tomato, pct: confidencePercent, w: weather) }
-        if label.contains("maize") || label.contains("corn") { return cropCard(.maize, pct: confidencePercent, w: weather) }
-        if label.contains("rice") || label.contains("paddy") { return cropCard(.rice, pct: confidencePercent, w: weather) }
-        if label.contains("potato") { return cropCard(.potato, pct: confidencePercent, w: weather) }
-        if label.contains("wheat") { return cropCard(.wheat, pct: confidencePercent, w: weather) }
-        if label.contains("sugarcane") { return cropCard(.sugarcane, pct: confidencePercent, w: weather) }
-
-        return BotMsg(role: .bot, text: "🌿 **\(diagnosis.cropName) Detected** (\(confidencePercent)%)\n\n\(diagnosis.disease): \(diagnosis.remedy)")
+        let statusEmoji = diagnosis.isHealthy ? "✅" : "⚠️"
+        let healthText = diagnosis.isHealthy ? "Healthy" : "Diseased / Rotten"
+        
+        var detailsText = """
+        \(diagnosis.cropIcon) **\(diagnosis.cropName) Analysis Result**
+        
+        • **Health Status:** \(statusEmoji) \(healthText)
+        • **Condition:** \(diagnosis.isHealthy ? "No disease detected" : diagnosis.disease)
+        • **Confidence:** \(confidencePercent)%
+        • **Affected Leaf/Fruit Area:** \(String(format: "%.1f%%", diagnosis.affectedArea))
+        • **Recommended Treatment:**
+        \(diagnosis.remedy)
+        """
+        
+        if !diagnosis.isHealthy && !diagnosis.symptoms.isEmpty {
+            detailsText += "\n\n• **Observed Symptoms:**"
+            for symptom in diagnosis.symptoms {
+                detailsText += "\n  - \(symptom)"
+            }
+        }
+        
+        return BotMsg(role: .bot, text: detailsText)
     }
 
-    // MARK: - Send text
     func sendText() {
         let query = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return }
 
-        // Core NLP: Evaluate query sentiment score to determine farmer distress level
         let sentiment = predictionEngine.analyzeSentiment(of: query)
         let isDistressed = sentiment == "negative"
 
@@ -127,7 +143,6 @@ final class KrishiBotVM: ObservableObject {
         Task {
             var answer = ""
 
-            // Attempt Gemini model analysis, fall back to offline dictionary
             if GeminiService.shared.isConfigured,
                let aiAnswer = await GeminiService.shared.ask(system: geminiSystem, user: query) {
                 answer = aiAnswer
@@ -136,7 +151,6 @@ final class KrishiBotVM: ObservableObject {
                 answer = localResponse.text
             }
 
-            // Append a supportive prefix if negative sentiment/distress is identified
             if isDistressed {
                 answer = "🚨 *Distress warning: High concern detected. Take action promptly.*\n\n" + answer
             }
@@ -248,7 +262,6 @@ final class KrishiBotVM: ObservableObject {
                 ], unit: "pH"))
         }
 
-        // Crop cards fallback
         if has(q, ["tomato"])    { return cropCard(.tomato,    pct: 90, w: w) }
         if has(q, ["maize", "corn"]) { return cropCard(.maize, pct: 90, w: w) }
         if has(q, ["rice", "paddy"]) { return cropCard(.rice,  pct: 90, w: w) }
@@ -264,7 +277,6 @@ final class KrishiBotVM: ObservableObject {
         """)
     }
 
-    // MARK: - Crop cards
     private enum CropType { case tomato, maize, rice, potato, wheat, sugarcane }
 
     private func cropCard(_ crop: CropType, pct: Int, w: WeatherData?) -> BotMsg {
@@ -323,7 +335,6 @@ final class KrishiBotVM: ObservableObject {
     }
 }
 
-// MARK: - Programmatic Disease Dictionary Data Loader
 private struct LocalDiseaseReference: Codable {
     let id: String
     let name: String

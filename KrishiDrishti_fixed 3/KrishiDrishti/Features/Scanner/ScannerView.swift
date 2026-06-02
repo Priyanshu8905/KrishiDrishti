@@ -148,15 +148,15 @@ struct ScannerView: View {
         case .idle:      return "Ready to Scan"
         case .scanning:  return "Analysing…"
         case .diagnosed: return "Done!"
-        default:         return "Ready to Scan"
+        case .error:     return "Scan Failed"
         }
     }
     private var statusSubtitle: String {
         switch vm.scanState {
         case .idle:      return "Take a photo or upload from your gallery to identify crop diseases"
-        case .scanning:  return "Vision AI is classifying your crop…"
+        case .scanning:  return "Vision AI: \(vm.processingStage)…"
         case .diagnosed: return "Analysis complete — opening result"
-        default:         return ""
+        case .error(let msg): return msg
         }
     }
 }

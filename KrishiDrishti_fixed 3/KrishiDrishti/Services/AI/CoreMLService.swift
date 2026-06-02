@@ -29,7 +29,7 @@ final class CoreMLService: CoreMLServiceProtocol {
                     return
                 }
 
-                let results = observations.prefix(5).map { obs in
+                let results = observations.prefix(20).map { obs in
                     (label: obs.identifier, confidence: Double(obs.confidence))
                 }
                 continuation.resume(returning: results)
