@@ -14,7 +14,7 @@ final class DIContainer: @unchecked Sendable {
     }
 
     func register<T>(type: T.Type, service: Any) {
-        queue.async(flags: .barrier) {
+        queue.sync(flags: .barrier) {
             let key = String(describing: type)
             self.services[key] = service
         }
