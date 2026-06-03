@@ -9,7 +9,7 @@ protocol PredictionEngineProtocol: Sendable {
     func analyzeSentiment(of text: String) -> String
 }
 
-final class PredictionEngine: PredictionEngineProtocol {
+final class PredictionEngine: PredictionEngineProtocol, @unchecked Sendable {
     private let coreMLService: CoreMLServiceProtocol
     private let visionService: VisionServiceProtocol
 

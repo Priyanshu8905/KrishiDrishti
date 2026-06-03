@@ -4,7 +4,7 @@
 import Vision
 import UIKit
 
-final class VisionAnalysisService {
+final class VisionAnalysisService: @unchecked Sendable {
 
     static let shared = VisionAnalysisService()
     private init() {}
@@ -16,34 +16,40 @@ final class VisionAnalysisService {
         "garden","nature","flora","root","stem","seed","agriculture"
     ]
 
-    /// Returns (label, confidence) for the best agricultural match
     func classify(image: UIImage) async -> (label: String, confidence: Double) {
         guard let cg = image.cgImage else { return ("leaf", 0.72) }
 
-        return await withCheckedContinuation { cont in
-            let req = VNClassifyImageRequest { [weak self] r, _ in
-                guard let self else { cont.resume(returning: ("leaf", 0.72)); return }
-                let obs = (r.results as? [VNClassificationObservation]) ?? []
+        let keywords = agriKeywords
 
-                var bestLabel = obs.first?.identifier ?? "leaf"
-                var bestConf  = Double(obs.first?.confidence ?? 0.7)
+        do {
+            return try await Task.detached(priority: .userInitiated) {
+                var bestLabel = "leaf"
+                var bestConf = 0.72
+
+                let req = VNClassifyImageRequest()
+                let handler = VNImageRequestHandler(cgImage: cg, orientation: .up)
+                try handler.perform([req])
+
+                let obs = (req.results as? [VNClassificationObservation]) ?? []
+                if let first = obs.first {
+                    bestLabel = first.identifier
+                    bestConf = Double(first.confidence)
+                }
 
                 for o in obs.prefix(25) {
                     let id = o.identifier.lowercased()
-                    if self.agriKeywords.contains(where: { id.contains($0) }) {
+                    if keywords.contains(where: { id.contains($0) }) {
                         bestLabel = o.identifier
-                        bestConf  = Double(o.confidence)
+                        bestConf = Double(o.confidence)
                         break
                     }
                 }
-                cont.resume(returning: (bestLabel, max(bestConf, 0.72)))
-            }
 
-            do {
-                try VNImageRequestHandler(cgImage: cg, orientation: .up).perform([req])
-            } catch {
-                cont.resume(returning: ("leaf", 0.72))
-            }
+                return (bestLabel, max(bestConf, 0.72))
+            }.value
+        } catch {
+            return ("leaf", 0.72)
         }
     }
 }
+

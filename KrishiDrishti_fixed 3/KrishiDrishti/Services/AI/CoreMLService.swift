@@ -9,7 +9,7 @@ protocol CoreMLServiceProtocol: Sendable {
     func performClassification(image: UIImage) async throws -> [(label: String, confidence: Double)]
 }
 
-final class CoreMLService: CoreMLServiceProtocol {
+final class CoreMLService: CoreMLServiceProtocol, @unchecked Sendable {
     init() {}
 
     func performClassification(image: UIImage) async throws -> [(label: String, confidence: Double)] {
@@ -17,30 +17,33 @@ final class CoreMLService: CoreMLServiceProtocol {
             throw NSError(domain: "CoreMLService", code: 400, userInfo: [NSLocalizedDescriptionKey: "Invalid image format"])
         }
 
-        return try await withCheckedThrowingContinuation { continuation in
+        return try await Task.detached(priority: .userInitiated) {
+            var classificationResults: [(label: String, confidence: Double)] = []
+            var classificationError: Error?
+
             let request = VNClassifyImageRequest { request, error in
                 if let error = error {
-                    continuation.resume(throwing: error)
+                    classificationError = error
                     return
                 }
 
                 guard let observations = request.results as? [VNClassificationObservation] else {
-                    continuation.resume(returning: [])
                     return
                 }
 
-                let results = observations.prefix(20).map { obs in
+                classificationResults = observations.prefix(20).map { obs in
                     (label: obs.identifier, confidence: Double(obs.confidence))
                 }
-                continuation.resume(returning: results)
             }
 
             let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-            do {
-                try handler.perform([request])
-            } catch {
-                continuation.resume(throwing: error)
+            try handler.perform([request])
+
+            if let error = classificationError {
+                throw error
             }
-        }
+
+            return classificationResults
+        }.value
     }
 }

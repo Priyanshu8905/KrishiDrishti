@@ -10,7 +10,10 @@ struct BotView: View {
     @StateObject private var network = NetworkMonitor.shared
     @StateObject private var bot = KrishiBotVM()
     @FocusState  private var focused: Bool
-    @State private var selectedPhoto: PhotosPickerItem?
+    @State private var showUploadSource = false
+    @State private var showCamera = false
+    @State private var showPhotoPicker = false
+    @State private var attachedImage: UIImage? = nil
 
     private let green  = AppTheme.green
     private let lgreen = AppTheme.greenSoft
@@ -20,7 +23,6 @@ struct BotView: View {
             VStack(spacing: 0) {
                 messageList
                 Divider()
-                if !focused && !bot.thinking { photoPrompt }
                 inputBar
             }
             .background(Color(uiColor: .systemGroupedBackground))
@@ -40,13 +42,28 @@ struct BotView: View {
                 }
             }
         }
-        .onChange(of: selectedPhoto) { _, item in
-            guard let item else { return }
-            Task {
-                if let data = try? await item.loadTransferable(type: Data.self),
-                   let img  = UIImage(data: data) { bot.analyzePhoto(img) }
-                await MainActor.run { selectedPhoto = nil }
+        .confirmationDialog("Upload Crop Photo", isPresented: $showUploadSource, titleVisibility: .visible) {
+            Button("Take Photo") {
+                showCamera = true
             }
+            Button("Choose from Gallery") {
+                showPhotoPicker = true
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+        .fullScreenCover(isPresented: $showCamera) {
+            CameraView(isPresented: $showCamera, onImage: { image in
+                attachedImage = image
+            }, onSelectGallery: {
+                showPhotoPicker = true
+            })
+            .ignoresSafeArea()
+        }
+        .sheet(isPresented: $showPhotoPicker) {
+            PhotoPickerView(onImage: { image in
+                attachedImage = image
+            }, isPresented: $showPhotoPicker)
+            .ignoresSafeArea()
         }
         .onAppear { sync() }
         .onReceive(weather.$weather) { _ in sync() }
@@ -58,7 +75,13 @@ struct BotView: View {
             ScrollView {
                 LazyVStack(spacing: 14) {
                     ForEach(bot.messages) { msg in BotBubble(msg: msg).id(msg.id) }
-                    if bot.thinking { TypingBubble().id("typing") }
+                    if bot.thinking {
+                        if bot.isAnalyzingImage {
+                            ImageAnalyzingBubble().id("typing")
+                        } else {
+                            TypingBubble().id("typing")
+                        }
+                    }
                     Color.clear.frame(height: 4).id("bottom")
                 }
                 .padding(.horizontal, 14).padding(.top, 14)
@@ -68,48 +91,81 @@ struct BotView: View {
         }
     }
 
-    private var photoPrompt: some View {
-        PhotosPicker(selection: $selectedPhoto, matching: .images) {
-            HStack(spacing: 12) {
-                ZStack {
-                    Circle().fill(AppTheme.primaryGradient)
-                    Image(systemName: "photo.fill").font(.system(size: 16, weight: .semibold)).foregroundStyle(.white)
-                }.frame(width: 42, height: 42)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Upload a crop photo").font(.subheadline).fontWeight(.semibold).foregroundStyle(green)
-                    Text("KrishiBot will analyze it instantly").font(.caption).foregroundStyle(.secondary)
+    private var inputBar: some View {
+        VStack(spacing: 0) {
+            if let image = attachedImage {
+                HStack {
+                    ZStack(alignment: .topTrailing) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 56, height: 56)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color(uiColor: .separator), lineWidth: 0.5)
+                            )
+                        
+                        Button {
+                            attachedImage = nil
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(Color.red)
+                                .background(Circle().fill(Color.white))
+                        }
+                        .buttonStyle(.plain)
+                        .offset(x: 6, y: -6)
+                    }
+                    Spacer()
                 }
-                Spacer()
-                Image(systemName: "chevron.right").font(.caption).foregroundStyle(.tertiary)
+                .padding(.horizontal, 14)
+                .padding(.top, 10)
+                .padding(.bottom, 4)
             }
-            .padding(.horizontal, 18).padding(.vertical, 12).background(lgreen)
-        }.buttonStyle(.plain)
+            
+            HStack(spacing: 10) {
+                Button {
+                    showUploadSource = true
+                } label: {
+                    Image(systemName: "photo.fill").font(.system(size: 18, weight: .semibold)).foregroundStyle(.white)
+                        .frame(width: 42, height: 42)
+                        .background(Circle().fill(AppTheme.primaryGradient)
+                            .shadow(color: green.opacity(0.4), radius: 8, y: 4))
+                }
+                .disabled(bot.thinking)
+
+                TextField("Ask anything about your crops…", text: $bot.input, axis: .vertical)
+                    .font(.subheadline).lineLimit(1...4)
+                    .padding(.horizontal, 14).padding(.vertical, 10)
+                    .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
+                    .focused($focused)
+
+                Button {
+                    sendAction()
+                } label: {
+                    Image(systemName: "arrow.up.circle.fill").font(.system(size: 34))
+                        .foregroundStyle(canSend ? green : Color(uiColor: .systemGray3))
+                }
+                .disabled(!canSend)
+            }
+            .padding(.horizontal, 14).padding(.vertical, 12)
+        }
+        .background(Color(uiColor: .systemGroupedBackground))
     }
 
-    private var inputBar: some View {
-        HStack(spacing: 10) {
-            PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                Image(systemName: "photo.fill").font(.system(size: 18, weight: .semibold)).foregroundStyle(.white)
-                    .frame(width: 42, height: 42)
-                    .background(Circle().fill(AppTheme.primaryGradient)
-                        .shadow(color: green.opacity(0.4), radius: 8, y: 4))
-            }.disabled(bot.thinking)
+    private var canSend: Bool {
+        (!bot.input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || attachedImage != nil) && !bot.thinking
+    }
 
-            TextField("Ask anything about your crops…", text: $bot.input, axis: .vertical)
-                .font(.subheadline).lineLimit(1...4)
-                .padding(.horizontal, 14).padding(.vertical, 10)
-                .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
-                .focused($focused)
-
-            Button { bot.sendText(); focused = false } label: {
-                Image(systemName: "arrow.up.circle.fill").font(.system(size: 34))
-                    .foregroundStyle(bot.input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                                     ? Color(uiColor: .systemGray3) : green)
-            }
-            .disabled(bot.input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || bot.thinking)
+    private func sendAction() {
+        if let image = attachedImage {
+            bot.analyzePhoto(image, text: bot.input)
+            attachedImage = nil
+        } else {
+            bot.sendText()
         }
-        .padding(.horizontal, 14).padding(.vertical, 12)
-        .background(Color(uiColor: .systemGroupedBackground))
+        focused = false
     }
 
     private func sync() {
@@ -237,4 +293,30 @@ struct TypingBubble: View {
             }
         }
     }
+}
+
+struct ImageAnalyzingBubble: View {
+    var body: some View {
+        HStack(alignment: .bottom, spacing: 8) {
+            ZStack {
+                Circle().fill(AppTheme.primaryGradient)
+                Text("🌾").font(.system(size: 14))
+            }.frame(width: 32, height: 32)
+            HStack(spacing: 8) {
+                ProgressView()
+                    .tint(AppTheme.green)
+                Text("Analyzing crop image...")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal, 16).padding(.vertical, 12)
+            .background(Color(uiColor: .secondarySystemGroupedBackground),
+                        in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+            Spacer()
+        }
+    }
+}
+
+#Preview {
+    BotView(weather: WeatherService(), profile: UserProfile())
 }

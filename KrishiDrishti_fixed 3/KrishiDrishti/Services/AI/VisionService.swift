@@ -9,7 +9,7 @@ protocol VisionServiceProtocol: Sendable {
     func detectObjects(in image: UIImage) async throws -> [CGRect]
 }
 
-final class VisionService: VisionServiceProtocol {
+final class VisionService: VisionServiceProtocol, @unchecked Sendable {
     init() {}
 
     func recognizeText(in image: UIImage) async throws -> [String] {
@@ -17,34 +17,37 @@ final class VisionService: VisionServiceProtocol {
             throw NSError(domain: "VisionService", code: 400, userInfo: [NSLocalizedDescriptionKey: "Invalid image format"])
         }
 
-        return try await withCheckedThrowingContinuation { continuation in
+        return try await Task.detached(priority: .userInitiated) {
+            var recognizedStrings: [String] = []
+            var recognitionError: Error?
+
             let request = VNRecognizeTextRequest { request, error in
                 if let error = error {
-                    continuation.resume(throwing: error)
+                    recognitionError = error
                     return
                 }
 
                 guard let observations = request.results as? [VNRecognizedTextObservation] else {
-                    continuation.resume(returning: [])
                     return
                 }
 
-                let transcript = observations.compactMap { observation in
+                recognizedStrings = observations.compactMap { observation in
                     observation.topCandidates(1).first?.string
                 }
-                continuation.resume(returning: transcript)
             }
 
             request.recognitionLevel = .accurate
             request.usesLanguageCorrection = true
 
             let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-            do {
-                try handler.perform([request])
-            } catch {
-                continuation.resume(throwing: error)
+            try handler.perform([request])
+
+            if let error = recognitionError {
+                throw error
             }
-        }
+
+            return recognizedStrings
+        }.value
     }
 
     func detectObjects(in image: UIImage) async throws -> [CGRect] {
@@ -52,29 +55,33 @@ final class VisionService: VisionServiceProtocol {
             throw NSError(domain: "VisionService", code: 400, userInfo: [NSLocalizedDescriptionKey: "Invalid image format"])
         }
 
-        return try await withCheckedThrowingContinuation { continuation in
+        return try await Task.detached(priority: .userInitiated) {
+            var detectedBounds: [CGRect] = []
+            var detectionError: Error?
+
             let request = VNGenerateAttentionBasedSaliencyImageRequest { request, error in
                 if let error = error {
-                    continuation.resume(throwing: error)
+                    detectionError = error
                     return
                 }
 
                 guard let observations = request.results as? [VNSaliencyImageObservation],
                       let salObs = observations.first else {
-                    continuation.resume(returning: [])
                     return
                 }
 
-                let bounds = salObs.salientObjects?.map { $0.boundingBox } ?? []
-                continuation.resume(returning: bounds)
+                detectedBounds = salObs.salientObjects?.map { $0.boundingBox } ?? []
             }
 
             let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-            do {
-                try handler.perform([request])
-            } catch {
-                continuation.resume(throwing: error)
+            try handler.perform([request])
+
+            if let error = detectionError {
+                throw error
             }
-        }
+
+            return detectedBounds
+        }.value
     }
 }
+
