@@ -65,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9333CA0F2FD0AEA700DB5FBB /* KrishiDrishti.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KrishiDrishti.entitlements; sourceTree = "<group>"; };
 		C0FCEF352FCEB7EC00759A16 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		C0FCEF372FCEB7F800759A16 /* RealityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityKit.framework; path = System/Library/Frameworks/RealityKit.framework; sourceTree = SDKROOT; };
 		F001 /* KrishiDrishtiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrishiDrishtiApp.swift; sourceTree = "<group>"; };
@@ -140,63 +141,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		GCORE /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				GCORE_DI /* DI */,
-				GCORE_NETWORK /* Network */,
-				GCORE_SECURITY /* Security */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		GCORE_DI /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0000 /* DIContainer.swift */,
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
-		GCORE_SECURITY /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0001 /* KeychainManager.swift */,
-				FNEW0002 /* SecurityManager.swift */,
-			);
-			path = Security;
-			sourceTree = "<group>";
-		};
-		GCORE_NETWORK /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0004 /* APIClient.swift */,
-				FNEW0003 /* Endpoint.swift */,
-				FNEW0005 /* NetworkManager.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		GMANAGERS /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0018 /* DataManager.swift */,
-				FNEW0017 /* PersistenceController.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		GREPOSITORIES /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0020 /* CropProblemRepository.swift */,
-				FNEW0021 /* UserProfileRepository.swift */,
-				FNEW0019 /* WeatherRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-
 		C0FCEF342FCEB7EC00759A16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +153,7 @@
 		GAPP /* KrishiDrishti */ = {
 			isa = PBXGroup;
 			children = (
+				9333CA0F2FD0AEA700DB5FBB /* KrishiDrishti.entitlements */,
 				GAPPDIR /* App */,
 				GCONFIG /* Config */,
 				GCORE /* Core */,
@@ -241,6 +186,43 @@
 			);
 			path = Config;
 			sourceTree = SOURCE_ROOT;
+		};
+		GCORE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				GCORE_DI /* DI */,
+				GCORE_NETWORK /* Network */,
+				GCORE_SECURITY /* Security */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		GCORE_DI /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0000 /* DIContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		GCORE_NETWORK /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0004 /* APIClient.swift */,
+				FNEW0003 /* Endpoint.swift */,
+				FNEW0005 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		GCORE_SECURITY /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0001 /* KeychainManager.swift */,
+				FNEW0002 /* SecurityManager.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
 		};
 		GFEATURES /* Features */ = {
 			isa = PBXGroup;
@@ -331,12 +313,31 @@
 			path = Scanner;
 			sourceTree = "<group>";
 		};
+		GMANAGERS /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0018 /* DataManager.swift */,
+				FNEW0017 /* PersistenceController.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		GPRODUCTS /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				FPRODUCT /* KrishiDrishti.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		GREPOSITORIES /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0020 /* CropProblemRepository.swift */,
+				FNEW0021 /* UserProfileRepository.swift */,
+				FNEW0019 /* WeatherRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		GRESOURCES /* Resources */ = {
@@ -660,6 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KrishiDrishti/KrishiDrishti.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -747,6 +749,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KrishiDrishti/KrishiDrishti.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
