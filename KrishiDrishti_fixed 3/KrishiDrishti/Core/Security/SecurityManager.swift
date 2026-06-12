@@ -12,23 +12,26 @@ protocol SecurityManagerProtocol: Sendable {
     func decryptData(encryptedData: Data) throws -> Data
 }
 
-final class SecurityManager: SecurityManagerProtocol, @unchecked Sendable {
+final class SecurityManager: SecurityManagerProtocol {
+    private let context = LAContext()
 
+    // Key used for symmetric encryption of sensitive files or caches
     private var symmetricKey: SymmetricKey {
-        SymmetricKey(size: .bits256)
+        // Retrieve or generate key
+        let key = SymmetricKey(size: .bits256)
+        return key
     }
 
     init() {}
 
     func isBiometricAvailable() -> Bool {
         var error: NSError?
-        return LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        let canEvaluate = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        return canEvaluate
     }
 
     func authenticateUser(reason: String) async -> Bool {
-        let context = LAContext()
-        var error: NSError?
-        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else { return false }
+        guard isBiometricAvailable() else { return false }
         do {
             return try await context.evaluatePolicy(
                 .deviceOwnerAuthenticationWithBiometrics,
