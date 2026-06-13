@@ -140,63 +140,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		GCORE /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				GCORE_DI /* DI */,
-				GCORE_NETWORK /* Network */,
-				GCORE_SECURITY /* Security */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		GCORE_DI /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0000 /* DIContainer.swift */,
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
-		GCORE_SECURITY /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0001 /* KeychainManager.swift */,
-				FNEW0002 /* SecurityManager.swift */,
-			);
-			path = Security;
-			sourceTree = "<group>";
-		};
-		GCORE_NETWORK /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0004 /* APIClient.swift */,
-				FNEW0003 /* Endpoint.swift */,
-				FNEW0005 /* NetworkManager.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		GMANAGERS /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0018 /* DataManager.swift */,
-				FNEW0017 /* PersistenceController.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		GREPOSITORIES /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				FNEW0020 /* CropProblemRepository.swift */,
-				FNEW0021 /* UserProfileRepository.swift */,
-				FNEW0019 /* WeatherRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-
 		C0FCEF342FCEB7EC00759A16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +184,43 @@
 			);
 			path = Config;
 			sourceTree = SOURCE_ROOT;
+		};
+		GCORE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				GCORE_DI /* DI */,
+				GCORE_NETWORK /* Network */,
+				GCORE_SECURITY /* Security */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		GCORE_DI /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0000 /* DIContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		GCORE_NETWORK /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0004 /* APIClient.swift */,
+				FNEW0003 /* Endpoint.swift */,
+				FNEW0005 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		GCORE_SECURITY /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0001 /* KeychainManager.swift */,
+				FNEW0002 /* SecurityManager.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
 		};
 		GFEATURES /* Features */ = {
 			isa = PBXGroup;
@@ -331,12 +311,31 @@
 			path = Scanner;
 			sourceTree = "<group>";
 		};
+		GMANAGERS /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0018 /* DataManager.swift */,
+				FNEW0017 /* PersistenceController.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		GPRODUCTS /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				FPRODUCT /* KrishiDrishti.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		GREPOSITORIES /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FNEW0020 /* CropProblemRepository.swift */,
+				FNEW0021 /* UserProfileRepository.swift */,
+				FNEW0019 /* WeatherRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		GRESOURCES /* Resources */ = {
@@ -661,18 +660,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 73B8W4ZN6V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = KrishiDrishti/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Krishi Drishti";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Com.KrishiDrishti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -748,18 +749,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 73B8W4ZN6V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = KrishiDrishti/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Krishi Drishti";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Com.KrishiDrishti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
