@@ -49,10 +49,12 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Krishi Drishti uses your location to show accurate local weather and disease risk alerts for your crops.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Krishi Drishti uses your camera to photograph crop leaves and detect diseases using AI.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>for usinf face id to open profile</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Krishi Drishti uses your location to show accurate local weather and disease risk alerts for your crops.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Krishi Drishti needs photo access to analyse crop leaves for disease detection.</string>
 	<key>SARVAM_API_KEY</key>
